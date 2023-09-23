@@ -28,7 +28,7 @@ const StudyOnlineSection = () => {
                   <Circle />
                 </div>
                 <h2 className="md:text-2xl lg:text-[2.625rem] font-bold opacity-[85%] capitalize text-base">
-                  Its now easier to study online
+                It&apos;s now easier to study online
                 </h2>
                 <div>
                   <div className="flex  lg:justify-center text-primary/50 lg:mt-[3rem] mt-2">
