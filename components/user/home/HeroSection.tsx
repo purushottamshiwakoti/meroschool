@@ -14,7 +14,7 @@ const HeroSection = () => {
               <Circle />
             </div>
             <h2 className="lg:text-[2.8125rem] md:text-[1.5rem] text-[1.2rem]  text-left  lg:text-left font-bold  opacity-[85%]  ">
-              It’s now easier to study online
+              Its now easier to study online
             </h2>
             <div className="flex justify-end">
               <Circle />
