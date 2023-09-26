@@ -1,9 +1,14 @@
-import React from 'react'
+import CLassList from "@/components/user/class/ClassList";
+import React from "react";
 
 const Class = () => {
   return (
-    <div>Class</div>
-  )
-}
+    <>
+      <div className="mt-[7rem]">
+        <CLassList />
+      </div>
+    </>
+  );
+};
 
-export default Class
+export default Class;

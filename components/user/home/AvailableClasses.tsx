@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import parse from "html-react-parser";
 import Circle from "@/components/common/Circle";
+import Link from "next/link";
 
 const AvailableClasses = () => {
   return (
@@ -20,22 +21,26 @@ const AvailableClasses = () => {
             title={"bbs 1<sup>st</sup> year"}
             image="/assets/class-1.svg"
             description="is simply dummy text of the printing and typesetting industry..and typesetting ds "
+            href="/bbs-1st-year"
           />
           <AvailableClassesCard
             title={"bbs 2<sup>nd</sup> year"}
-            image="/assets/class-1.svg"
+            image="/assets/class-4.svg"
             description="is simply dummy text of the printing and typesetting industry..and typesetting ds "
+            href="/bbs-2nd-year"
           />
 
           <AvailableClassesCard
             title={"bbs 3<sup>rd</sup> year"}
             image="/assets/class-3.svg"
             description="is simply dummy text of the printing and typesetting industry..and typesetting ds "
+            href="/bbs-3rd-year"
           />
           <AvailableClassesCard
             title={"bbs 4<sup>th</sup> year"}
             image="/assets/class-2.svg"
             description="is simply dummy text of the printing and typesetting industry..and typesetting ds "
+            href="/bbs-4th-year"
           />
         </div>
       </div>
@@ -49,11 +54,13 @@ interface AvailableClassesCardProps {
   image: string;
   title: string;
   description: string;
+  href: string;
 }
 const AvailableClassesCard: React.FC<AvailableClassesCardProps> = ({
   title,
   image,
   description,
+  href,
 }) => (
   <>
     <div className="flex items-end">
@@ -72,9 +79,11 @@ const AvailableClassesCard: React.FC<AvailableClassesCardProps> = ({
           </p>
         </div>
         <div className="flex justify-center items-center">
-          <Button className="bg-[#EE7A79] hover:bg-[#EE7A79] hover:opacity-80">
-            Start Learning
-          </Button>
+          <Link href={`/class${href}`}>
+            <Button className="bg-[#EE7A79] hover:bg-[#EE7A79] hover:opacity-80">
+              Start Learning
+            </Button>
+          </Link>
         </div>
       </div>
       <div>

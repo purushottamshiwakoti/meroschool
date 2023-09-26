@@ -6,11 +6,12 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import useMenuStore from "@/hooks/useMenuStore";
 import Circle from "@/components/common/Circle";
+import { ColorSwitcher } from "@/components/common/ColorSwitcher";
 
 const links = [
   { id: 1, name: "Home", href: "/" },
   { id: 2, name: "Class", href: "/class" },
-  { id: 2, name: "Suggestion", href: "/suggestion" },
+  { id: 3, name: "Suggestion", href: "/suggestion" },
 ];
 
 const NavLinks = () => {
@@ -34,7 +35,7 @@ const NavLinks = () => {
           {links?.map((item) => (
             <Link href={item.href} key={item.id}>
               <li
-                className={`mt-5 text-[1.125rem] font-[500]  text-primary/50 hover:bg-gray-400/20 p-1 rounded-md ${
+                className={`mt-5 text-[1.125rem]  font-[500]  text-primary/50 hover:bg-gray-400/20 p-1 rounded-md ${
                   pathname === item.href ? "border-b-4 border-[#EE7A79]" : ""
                 }`}
                 onClick={menuState.handleChange}
@@ -43,6 +44,9 @@ const NavLinks = () => {
               </li>
             </Link>
           ))}
+          <div className="flex float-right md:hidden lg:hidden">
+            <ColorSwitcher />
+          </div>
         </ul>
       </div>
       <div className="mt-2 ml-4">

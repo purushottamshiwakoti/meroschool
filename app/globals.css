@@ -71,6 +71,6 @@
     @apply border-border;
   }
   body {
-    @apply bg-[#FDFAF3] ;
+    @apply bg-[#FDFAF3] dark:bg-[#333] ;
   }
 }
