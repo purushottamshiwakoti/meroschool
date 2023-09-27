@@ -12,7 +12,7 @@ const Topbar = () => {
   const menuStore = useAdminMenuStore();
 
   return (
-    <div className="h-[4rem] bg-white p-4 border-b-2 flex justify-between items-center fixed w-full  ">
+    <div className="h-[4rem] bg-white p-4 border-b-2 flex justify-between items-center fixed w-full z-10  ">
       <div className="cursor-pointer flex items-center space-x-[5rem]">
         <Menu className="text-gray-600" onClick={menuStore.closeMenu} />
         <div className="lg:flex md:flex items-center space-x-1 justify-center hidden">

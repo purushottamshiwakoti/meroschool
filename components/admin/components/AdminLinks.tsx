@@ -48,8 +48,8 @@ const AdminLinks = () => {
                   scroll={false}
                   className="flex space-x-3"
                 >
-                  {item.icon}
-                  <li className={`list-none text-xl hidden lg:block  `}>
+                  <div className="w-4 h-4">{item.icon}</div>
+                  <li className={`list-none text-base hidden lg:block  `}>
                     {menuStore.isOpen && item.name}
                   </li>
                 </Link>

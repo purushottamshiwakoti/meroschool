@@ -15,4 +15,14 @@ model Class {
   name       String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+  Course     Course[]
+}
+
+model Course {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  course     Class    @relation(fields: [courseId], references: [id])
+  courseId   String   @db.ObjectId
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }

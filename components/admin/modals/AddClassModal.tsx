@@ -8,14 +8,12 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -26,36 +24,46 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
-import { DialogClose } from "@radix-ui/react-dialog";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Loader } from "lucide-react";
 import toast from "react-hot-toast";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
+import prismadb from "@/lib/prismadb";
 
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Classname must be at least 2 characters.",
   }),
 });
-
-const AddClassModal = () => {
+interface AddClassModalProps {
+  defaultValue: {
+    name: string;
+  };
+  header: string;
+}
+const AddClassModal: React.FC<AddClassModalProps> = ({
+  defaultValue,
+  header,
+}) => {
   const adminModal = useAdminModalStore();
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-    },
+    defaultValues: defaultValue,
   });
+  const url = window.location.origin;
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:3000/api/class", values);
+      const res = await axios.post(`${url}/api/class`, values);
       toast.success(res.data.message);
       form.reset();
       adminModal.isOpen = false;
+      router.refresh();
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
@@ -69,7 +77,7 @@ const AddClassModal = () => {
       <Dialog open={adminModal.isOpen} onOpenChange={adminModal.closeModal}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Create Class</DialogTitle>
+            <DialogTitle>{header}</DialogTitle>
             <DialogDescription>
               <Form {...form}>
                 <form
@@ -101,14 +109,14 @@ const AddClassModal = () => {
                         disabled
                       >
                         <Loader className="animate-spin h-5 w-5 mr-3" />
-                        Submit
+                        Saving Changes
                       </Button>
                     ) : (
                       <Button
                         type="submit"
                         className="bg-[#EE7A79] hover:bg-[#EE7A79] hover:opacity-80"
                       >
-                        Submit
+                        Save Changes
                       </Button>
                     )}
                   </div>
