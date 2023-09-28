@@ -4,8 +4,23 @@ import prismadb from "@/lib/prismadb";
 import React from "react";
 
 const Course = async () => {
-  const classes = await prismadb.class.findMany({});
-
+  const classes = await prismadb.class.findMany({
+    orderBy: {
+      created_at: "desc",
+    },
+    include: {
+      courses: {
+        select: {
+          id: true,
+          class: true,
+          courseId: true,
+          name: true,
+          created_at: true,
+          updated_at: true,
+        },
+      },
+    },
+  });
   return (
     <>
       <div>

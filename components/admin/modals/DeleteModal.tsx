@@ -17,11 +17,15 @@ interface DeleteModalProps {
   isLoading: boolean;
   onConfirm: any;
   setIsLoading: any;
+  title: string;
+  description: string;
 }
 const DeleteModal: React.FC<DeleteModalProps> = ({
   setIsLoading,
   isLoading,
   onConfirm,
+  title,
+  description,
 }) => {
   const deleteModal = useAdminDeleteModalStore();
 
@@ -35,11 +39,8 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
     <Dialog open={deleteModal.isOpen} onOpenChange={deleteModal.closeModal}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Are you sure absolutely sure ?</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            items and remove your data from our servers.
-          </DialogDescription>
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
         <DialogFooter>
           <div className="flex justify-between items-center space-x-6">

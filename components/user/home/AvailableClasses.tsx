@@ -64,12 +64,12 @@ const AvailableClassesCard: React.FC<AvailableClassesCardProps> = ({
 }) => (
   <>
     <div className="flex items-end">
-      <div className="mt-4 w-[21.625rem]  h-[31.1875rem] rounded-[2.5625rem] shadow-md p-5 space-y-3">
+      <div className="mt-4 w-[21.625rem]   rounded-[2.5625rem] shadow-md p-5 space-y-3">
         <div className="h-[16.6875rem]  ">
           <Image src={image} alt={image} width={346} height={267} />
         </div>
         <div>
-          <h2 className="text-[1.5rem] font-bold opacity-[75%] capitalize">
+          <h2 className="text-[1.5rem] -mt-10 font-bold opacity-[75%] capitalize">
             {parse(title)}
           </h2>
         </div>

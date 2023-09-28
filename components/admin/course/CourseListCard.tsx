@@ -1,6 +1,8 @@
 "use client";
 import { Pencil, PlusCircle, Trash } from "lucide-react";
 
+import { Class as ClassType, Course as CourseType } from "@prisma/client"; // Import types from Prisma
+
 import {
   Accordion,
   AccordionContent,
@@ -19,29 +21,48 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import DeleteModal from "../modals/DeleteModal";
 import useAdminDeleteModalStore from "@/hooks/useAdminDeleteModalStore";
+import AddCourseModal from "../modals/AddCourseModal ";
+import useAdminCourseModalStore from "@/hooks/useAdminCourseModalStore ";
+import { string } from "zod";
 
 interface CourseListCardProps {
-  class: Class[];
+  // class: {
+  //   id: string;
+  //   name: string;
+  //   created_at: Date;
+  //   updated_at: Date;
+  //   course: {
+  //     id: string;
+  //     name: string;
+  //     created_at: Date;
+  //     updated_at: Date;
+  //   }[];
+  // }[];
+  class: any;
 }
 
 const CourseListCard: React.FC<CourseListCardProps> = ({ class: classes }) => {
   const url = window.location.origin;
   const [classValue, setClassValue] = useState("");
+  const [courseValue, setCourseValue] = useState("");
   const [className, setClassName] = useState("");
   const router = useRouter();
   const deleteModal = useAdminDeleteModalStore();
   // adminModal.openModal();
   const [loading, setLoading] = useState(false);
   const [editClassMode, setEditClassMode] = useState<string | null>(null);
+  const courseModal = useAdminCourseModalStore();
 
-  const addCourse = () => {
-    alert("jjj");
+  const addCourse = (id: string) => {
+    console.log(id);
+    setCourseValue(id);
+    courseModal.openModal();
   };
-  const handleEditCourse = () => {
-    alert("jjj");
+  const handleEditCourse = (id: string) => {
+    alert(id);
   };
-  const handleDeleteCourse = () => {
-    alert("jjj");
+  const handleDeleteCourse = (id: string) => {
+    alert(id);
   };
   const handleEditClass = (id: string, initialName: string) => {
     setEditClassMode(id);
@@ -79,11 +100,19 @@ const CourseListCard: React.FC<CourseListCardProps> = ({ class: classes }) => {
 
   return (
     <>
+      <AddCourseModal
+        header="Create Course"
+        defaultValue={{ name: "" }}
+        classId={courseValue}
+      />
       {classValue !== "" && (
         <DeleteModal
           isLoading={loading}
           onConfirm={() => handleDeleteClass(classValue)}
           setIsLoading={setLoading}
+          title="Are you sure absolutely sure ?"
+          description="
+          This action cannot be undone. This will permanently delete classes and course lists data from our servers."
         />
       )}
 
@@ -93,7 +122,7 @@ const CourseListCard: React.FC<CourseListCardProps> = ({ class: classes }) => {
             <div className="mt-2 ml-4 mr-[0.7rem]">
               <AdminCourse />
             </div>
-            {classes?.map((item) => (
+            {classes?.map((item: ClassType) => (
               <div key={item.id}>
                 <div className="w-auto border-2 p-1 border-[#EE7A79] rounded-md shadow-md flex flex-row m-3">
                   <Accordion
@@ -150,25 +179,55 @@ const CourseListCard: React.FC<CourseListCardProps> = ({ class: classes }) => {
                       <AccordionContent>
                         <div>
                           <ul className="space-y-2 text-primary/80  ">
-                            <div className="p-2 shadow-md cursor-pointer flex justify-between items-center">
-                              <li>BBS 1st Year</li>
-                              <div className="flex space-x-2">
-                                <Pencil
-                                  className="w-4 h-4"
-                                  color="green"
-                                  onClick={handleEditCourse}
-                                />
-                                <Trash
-                                  className="w-4 h-4"
-                                  color="red"
-                                  onClick={handleDeleteCourse}
-                                />
-                              </div>
-                            </div>
+                            {((item as any).courses || []).map(
+                              (course: CourseType) => (
+                                <div
+                                  className="shadow-md cursor-pointer "
+                                  key={course.id}
+                                >
+                                  <Accordion type="single" collapsible>
+                                    <AccordionItem value="item-1">
+                                      <AccordionTrigger className="text-[#EE7A79]">
+                                        <div className="flex px-2 justify-between w-full">
+                                          <div className="text-[#EE7A79]">
+                                            {course.name}
+                                          </div>
+                                          <div className="flex space-x-2">
+                                            <Pencil
+                                              className="w-4 h-4"
+                                              color="green"
+                                              onClick={() =>
+                                                handleEditCourse(course.id)
+                                              }
+                                            />
+                                            <Trash
+                                              className="w-4 h-4"
+                                              color="red"
+                                              onClick={() =>
+                                                handleDeleteCourse(course.id)
+                                              }
+                                            />
+                                          </div>
+                                        </div>
+                                      </AccordionTrigger>
+                                      <AccordionContent>
+                                        <div
+                                          className="flex items-center  text-white p-1 rounded-md shadow-md cursor-pointer mt-4 bg-[#EE7A79] "
+                                          onClick={() => addCourse(item.id)}
+                                        >
+                                          <PlusCircle className="w-4 h-4 mr-1" />
+                                          Add Chapters
+                                        </div>
+                                      </AccordionContent>
+                                    </AccordionItem>
+                                  </Accordion>
+                                </div>
+                              )
+                            )}
                           </ul>
                           <div
                             className="flex items-center  text-white p-1 rounded-md shadow-md cursor-pointer mt-4 bg-[#EE7A79] "
-                            onClick={addCourse}
+                            onClick={() => addCourse(item.id)}
                           >
                             <PlusCircle className="w-4 h-4 mr-1" />
                             Add Course

@@ -40,7 +40,7 @@ const CLassList = () => {
           <div className="bg-white w-[20rem] p-2 shadow-md rounded-md">
             <Accordion type="single" collapsible defaultValue="item-1">
               <AccordionItem value="item-1">
-                <AccordionTrigger className="text-primary/80">
+                <AccordionTrigger className=" text-[#EE7A79]">
                   BBS Class List
                 </AccordionTrigger>
                 <AccordionContent>
@@ -48,7 +48,9 @@ const CLassList = () => {
                     <ul className="space-y-5 tex-lg text-primary/60 font-semibold">
                       {classes.map((item) => (
                         <Link href={`class${item.href}`} key={item.id}>
-                          <li className="p-3">{parser(item.name)}</li>
+                          <li className="p-3 hover:bg-primary/5">
+                            {parser(item.name)}
+                          </li>
                         </Link>
                       ))}
                     </ul>
