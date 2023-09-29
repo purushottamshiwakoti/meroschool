@@ -1,15 +1,20 @@
-import { PrismaClient} from "@prisma/client"
+import { PrismaClient } from "@prisma/client";
 
-declare global{
-    var prisma:PrismaClient|undefined;
+declare global {
+  var prisma: PrismaClient | undefined;
 }
 
-const prismadb=globalThis.prisma|| new PrismaClient();
-// if(!process.env.NODE_ENV!=="production") globalThis.prisma=prismadb;
-if (!process.env.NODE_ENV || process.env.NODE_ENV !== "production") {
-    if (!globalThis.prisma) {
-      globalThis.prisma = prismadb;
-    }
-  }
+// Function to initialize and return the Prisma client
+function initPrisma() {
+  const prisma = new PrismaClient();
+  return prisma;
+}
 
-  export default prismadb
+const prismadb = globalThis.prisma || initPrisma();
+
+// Only initialize Prisma if it's not already defined
+if (!globalThis.prisma) {
+  globalThis.prisma = prismadb;
+}
+
+export default prismadb;

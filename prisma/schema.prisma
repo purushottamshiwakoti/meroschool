@@ -15,15 +15,26 @@ model Class {
   name       String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-
-  courses Course[]
+  Course     Course[]
 }
 
 model Course {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  slug       String
+  courseId   String    @db.ObjectId
+  class      Class     @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  Chapter    Chapter[]
+}
+
+model Chapter {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   name       String
-  courseId   String   @db.ObjectId
-  class      Class    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  slug       String
+  chapterId  String   @db.ObjectId
+  courses    Course   @relation(fields: [chapterId], references: [id], onDelete: Cascade)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }

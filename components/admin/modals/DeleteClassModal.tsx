@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Loader } from "lucide-react";
-import useAdminDeleteModalStore from "@/hooks/useAdminDeleteModalStore";
+import useAdminDeleteModalStore from "@/hooks/useAdminDeleteClassModalStore";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { useEffect, useState } from "react";
 
@@ -20,7 +20,7 @@ interface DeleteModalProps {
   title: string;
   description: string;
 }
-const DeleteModal: React.FC<DeleteModalProps> = ({
+const DeleteClassModal: React.FC<DeleteModalProps> = ({
   setIsLoading,
   isLoading,
   onConfirm,
@@ -74,4 +74,4 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
   );
 };
 
-export default DeleteModal;
+export default DeleteClassModal;

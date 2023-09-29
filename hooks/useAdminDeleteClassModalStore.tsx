@@ -6,10 +6,10 @@ interface AdminModalState {
   closeModal: () => void;
 }
 
-const useAdminDeleteModalStore = create<AdminModalState>((set) => ({
+const useAdminDeleteClassModalStore = create<AdminModalState>((set) => ({
   isOpen: false,
   openModal: () => set((state) => ({ isOpen: (state.isOpen = true) })),
   closeModal: () => set((state) => ({ isOpen: (state.isOpen = false) })),
 }));
 
-export default useAdminDeleteModalStore;
+export default useAdminDeleteClassModalStore;
