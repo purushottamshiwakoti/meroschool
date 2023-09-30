@@ -4,9 +4,11 @@ import useAdminMenuStore from "@/hooks/useAdminMenuStore";
 import {
   Album,
   BookCopy,
+  FileQuestion,
   LayoutDashboard,
   MapPin,
   Send,
+  StickyNote,
   Users,
 } from "lucide-react";
 import Link from "next/link";
@@ -23,8 +25,20 @@ const links = [
   {
     id: 2,
     name: "Course",
-    href: "course",
+    href: "/v1/admin/course",
     icon: <BookCopy />,
+  },
+  {
+    id: 3,
+    name: "Questions",
+    href: "/v1/admin/questions",
+    icon: <FileQuestion />,
+  },
+  {
+    id: 4,
+    name: "Notes",
+    href: "/v1/admin/notes",
+    icon: <StickyNote />,
   },
 ];
 

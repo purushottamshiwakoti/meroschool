@@ -6,7 +6,6 @@ import prismadb from "@/lib/prismadb";
 export async function GET(req: any,params:any) {
     try {
         const id=await params.params.id;
-        console.log(id);
         const findCourse=await prismadb.course.findUnique({
             where:{
                 id
@@ -25,9 +24,7 @@ export async function GET(req: any,params:any) {
 export async function PATCH(req: any, params: any) {
   try {
       const id = await params.params.id;
-      console.log({id});
       const { name } = await req.json();
-      console.log({name});
 
       // Check if the course exists before updating
       const findCourse = await prismadb.course.findUnique({
@@ -39,7 +36,6 @@ export async function PATCH(req: any, params: any) {
       if (!findCourse) {
           return NextResponse.json({ error: "Course not found" }, { status: 404 });
       }
-      console.log(findCourse);
 
       // Now that we've confirmed the course exists, update it
       const updateCourse = await prismadb.course.update({
@@ -62,7 +58,6 @@ export async function PATCH(req: any, params: any) {
 export async function DELETE(req: any,params:any) {
   try {
     const id=await params.params.id;
-    console.log(id);
    
       await prismadb.course.delete({
           where:{

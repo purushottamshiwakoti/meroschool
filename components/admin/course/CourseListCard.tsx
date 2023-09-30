@@ -40,10 +40,10 @@ interface CourseListCardProps {
   //     updated_at: Date;
   //   }[];
   // }[];
-  class: any[];
+  classes: any[];
 }
 
-const CourseListCard: React.FC<CourseListCardProps> = ({ class: classes }) => {
+const CourseListCard: React.FC<CourseListCardProps> = ({ classes }) => {
   const url = window.location.origin;
   const [classValue, setClassValue] = useState("");
   const [courseValue, setCourseValue] = useState("");
@@ -55,7 +55,6 @@ const CourseListCard: React.FC<CourseListCardProps> = ({ class: classes }) => {
   const deleteClassModal = useAdminDeleteClassModalStore();
   const deleteCourseModal = useAdminDeleteCourseModalStore();
   const deleteChapterModal = useAdminDeleteChapterModalStore();
-  console.log(deleteChapterModal);
   // adminModal.openModal();
   const [loading, setLoading] = useState(false);
   const [editClassMode, setEditClassMode] = useState<string | null>(null);

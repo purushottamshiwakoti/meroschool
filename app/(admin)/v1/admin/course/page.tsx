@@ -17,11 +17,12 @@ const Course = async () => {
       },
     },
   });
+
   return (
     <>
       <div>
         <div>
-          <CourseListCard class={classes} />
+          <CourseListCard classes={classes} />
         </div>
       </div>
     </>

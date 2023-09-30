@@ -47,7 +47,6 @@ const AddCourseModal: React.FC<AddClassModalProps> = ({
   header,
   classId,
 }) => {
-  console.log(classId);
   const adminModal = useAdminCourseModalStore();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -73,7 +72,6 @@ const AddCourseModal: React.FC<AddClassModalProps> = ({
     } finally {
       setLoading(false);
     }
-    console.log(values);
   }
 
   return (
