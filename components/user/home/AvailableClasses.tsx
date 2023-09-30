@@ -64,7 +64,7 @@ const AvailableClassesCard: React.FC<AvailableClassesCardProps> = ({
 }) => (
   <>
     <div className="flex items-end">
-      <div className="mt-4 w-[21.625rem]   rounded-[2.5625rem] shadow-md p-5 space-y-3">
+      <div className="mt-4     rounded-[2.5625rem] shadow-md p-5 space-y-3">
         <div className="h-[16.6875rem]  ">
           <Image src={image} alt={image} width={346} height={267} />
         </div>
@@ -78,9 +78,9 @@ const AvailableClassesCard: React.FC<AvailableClassesCardProps> = ({
             {description}
           </p>
         </div>
-        <div className="flex justify-center items-center">
+        <div className="mt-1 ">
           <Link href={`/class${href}`}>
-            <Button className="bg-[#EE7A79] hover:bg-[#EE7A79] hover:opacity-80">
+            <Button className="bg-[#EE7A79] hover:bg-[#EE7A79] h-[2.7rem] hover:opacity-80 w-full  ">
               Start Learning
             </Button>
           </Link>

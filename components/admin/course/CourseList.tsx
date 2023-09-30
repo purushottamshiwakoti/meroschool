@@ -8,7 +8,7 @@ const CourseList = async () => {
 
   return (
     <div className="w-56 p-1 min-h-80 shadow-md rounded-md border-solid border-2 border-[#EE7A79] mb-4 ">
-      <CourseListCard class={classes} />
+      <CourseListCard classes={classes} />
     </div>
   );
 };

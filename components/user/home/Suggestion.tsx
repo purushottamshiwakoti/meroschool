@@ -12,7 +12,7 @@ const Suggestion = () => {
             <span className="text-[#EE7A79]"> Us</span>
           </h2>
           <p className="mt-4 text-primary/50 capitalize">
-            How can we imporove our website in your assistance
+            How can we improve our website in your assistance
           </p>
         </div>
         <div>

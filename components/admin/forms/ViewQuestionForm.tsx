@@ -17,7 +17,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 
 import {
@@ -27,11 +26,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 import { Loader } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   classId: z.string().min(2, {
@@ -55,12 +54,14 @@ interface AddEditQuestionFormProps {
   classes: Class[];
   courses: Course[];
   chapters: Chapter[];
+  defaultValues: any;
 }
 
-const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
+const ViewQuestionForm: React.FC<AddEditQuestionFormProps> = ({
   classes,
   courses,
   chapters,
+  defaultValues,
 }) => {
   const url = window.location.origin;
   const router = useRouter();
@@ -101,13 +102,14 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      classId: "",
-      courseId: "",
-      chapterId: "",
-      question: "",
-      answer: "",
-    },
+    // defaultValues: {
+    //   classId: "",
+    //   courseId: "",
+    //   chapterId: "",
+    //   question: "",
+    //   answer: "",
+    // },
+    defaultValues,
   });
 
   // 2. Define a submit handler.
@@ -151,6 +153,7 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
                         field.onChange(value), setClassValue(value);
                       }}
                       defaultValue={field.value}
+                      disabled
                     >
                       <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="Select Class" />
@@ -185,28 +188,26 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
                         setCourseValue(value); // Update the courseValue state
                       }}
                       defaultValue={field.value}
+                      disabled
                     >
                       <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="Select Course" />
                       </SelectTrigger>
                       <SelectContent>
-                        {classValue ? (
-                          courses.map((course) =>
-                            course.courseId === classValue ? (
-                              // <div>dsnnds</div>
-                              <SelectItem value={course.id} key={course.id}>
-                                {course.name}
-                              </SelectItem>
-                            ) : (
-                              <p className="text-rose-600" key={classValue}>
-                                No course found
-                              </p>
-                            )
+                        {courses.map((course) =>
+                          course.courseId === defaultValues.classId ? (
+                            // <div>dsnnds</div>
+                            <SelectItem value={course.id} key={course.id}>
+                              {course.name}
+                            </SelectItem>
+                          ) : (
+                            <p
+                              className="text-rose-600"
+                              key={defaultValues.classId}
+                            >
+                              No course found
+                            </p>
                           )
-                        ) : (
-                          <p className="text-rose-600">
-                            Please select class first
-                          </p>
                         )}
                       </SelectContent>
                     </Select>
@@ -228,28 +229,26 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
                         field.onChange(value); // Update the form field value
                       }}
                       defaultValue={field.value}
+                      disabled
                     >
                       <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="Select Course" />
                       </SelectTrigger>
                       <SelectContent>
-                        {courseValue ? (
-                          chapters.map((chapter) =>
-                            chapter.chapterId === courseValue ? (
-                              // <div>dsnnds</div>
-                              <SelectItem value={chapter.id} key={chapter.id}>
-                                {chapter.name}
-                              </SelectItem>
-                            ) : (
-                              <p className="text-rose-600" key={courseValue}>
-                                No chapter found
-                              </p>
-                            )
+                        {chapters.map((chapter) =>
+                          chapter.chapterId === defaultValues.courseId ? (
+                            // <div>dsnnds</div>
+                            <SelectItem value={chapter.id} key={chapter.id}>
+                              {chapter.name}
+                            </SelectItem>
+                          ) : (
+                            <p
+                              className="text-rose-600"
+                              key={defaultValues.courseId}
+                            >
+                              No chapter found
+                            </p>
                           )
-                        ) : (
-                          <p className="text-rose-600">
-                            Please select course first
-                          </p>
                         )}
                       </SelectContent>
                     </Select>
@@ -272,6 +271,7 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
                     {...field}
                     modules={modules}
                     formats={formats}
+                    readOnly
                   />
                 </FormControl>
                 <FormMessage />
@@ -292,6 +292,7 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
                     {...field}
                     modules={modules}
                     formats={formats}
+                    readOnly
                   />
                 </FormControl>
                 <FormMessage />
@@ -307,8 +308,11 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
               Adding Question
             </Button>
           ) : (
-            <Button className="bg-[#EE7A79] hover:bg-[#EE7A79] hover:opacity-80 w-full lg:w-full/2">
-              Add Question
+            <Button
+              className="bg-[#EE7A79] hover:bg-[#EE7A79] hover:opacity-80 w-full lg:w-full/2"
+              disabled
+            >
+              This is view mode only
             </Button>
           )}
         </form>
@@ -317,4 +321,4 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
   );
 };
 
-export default AddEditQuestionForm;
+export default ViewQuestionForm;

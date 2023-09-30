@@ -17,7 +17,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 
 import {
@@ -27,11 +26,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 import { Loader } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   classId: z.string().min(2, {
@@ -55,12 +54,16 @@ interface AddEditQuestionFormProps {
   classes: Class[];
   courses: Course[];
   chapters: Chapter[];
+  defaultValues: any;
+  id: string;
 }
 
-const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
+const EditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
   classes,
   courses,
   chapters,
+  defaultValues,
+  id,
 }) => {
   const url = window.location.origin;
   const router = useRouter();
@@ -101,23 +104,23 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      classId: "",
-      courseId: "",
-      chapterId: "",
-      question: "",
-      answer: "",
-    },
+    // defaultValues: {
+    //   classId: "",
+    //   courseId: "",
+    //   chapterId: "",
+    //   question: "",
+    //   answer: "",
+    // },
+    defaultValues,
   });
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    // console.log(values);
     try {
       setLoading(true);
-      const res = await axios.post(`${url}/api/question`, values);
+      const res = await axios.patch(`${url}/api/question/${id}`, values);
       // console.log(res);
       toast.success(res.data.message);
       router.refresh();
@@ -190,23 +193,20 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
                         <SelectValue placeholder="Select Course" />
                       </SelectTrigger>
                       <SelectContent>
-                        {classValue ? (
-                          courses.map((course) =>
-                            course.courseId === classValue ? (
-                              // <div>dsnnds</div>
-                              <SelectItem value={course.id} key={course.id}>
-                                {course.name}
-                              </SelectItem>
-                            ) : (
-                              <p className="text-rose-600" key={classValue}>
-                                No course found
-                              </p>
-                            )
+                        {courses.map((course) =>
+                          course.courseId === defaultValues.classId ? (
+                            // <div>dsnnds</div>
+                            <SelectItem value={course.id} key={course.id}>
+                              {course.name}
+                            </SelectItem>
+                          ) : (
+                            <p
+                              className="text-rose-600"
+                              key={defaultValues.classId}
+                            >
+                              No course found
+                            </p>
                           )
-                        ) : (
-                          <p className="text-rose-600">
-                            Please select class first
-                          </p>
                         )}
                       </SelectContent>
                     </Select>
@@ -233,23 +233,20 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
                         <SelectValue placeholder="Select Course" />
                       </SelectTrigger>
                       <SelectContent>
-                        {courseValue ? (
-                          chapters.map((chapter) =>
-                            chapter.chapterId === courseValue ? (
-                              // <div>dsnnds</div>
-                              <SelectItem value={chapter.id} key={chapter.id}>
-                                {chapter.name}
-                              </SelectItem>
-                            ) : (
-                              <p className="text-rose-600" key={courseValue}>
-                                No chapter found
-                              </p>
-                            )
+                        {chapters.map((chapter) =>
+                          chapter.chapterId === defaultValues.courseId ? (
+                            // <div>dsnnds</div>
+                            <SelectItem value={chapter.id} key={chapter.id}>
+                              {chapter.name}
+                            </SelectItem>
+                          ) : (
+                            <p
+                              className="text-rose-600"
+                              key={defaultValues.courseId}
+                            >
+                              No chapter found
+                            </p>
                           )
-                        ) : (
-                          <p className="text-rose-600">
-                            Please select course first
-                          </p>
                         )}
                       </SelectContent>
                     </Select>
@@ -304,11 +301,11 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
               disabled
             >
               <Loader className="animate-spin h-5 w-5 mr-3" />
-              Adding Question
+              Updating Question
             </Button>
           ) : (
             <Button className="bg-[#EE7A79] hover:bg-[#EE7A79] hover:opacity-80 w-full lg:w-full/2">
-              Add Question
+              Update
             </Button>
           )}
         </form>
@@ -317,4 +314,4 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
   );
 };
 
-export default AddEditQuestionForm;
+export default EditQuestionForm;
