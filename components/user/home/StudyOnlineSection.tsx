@@ -29,13 +29,13 @@ const StudyOnlineSection = () => {
                   <Circle />
                 </div>
                 <h2 className="md:text-2xl lg:text-[2.625rem] font-bold opacity-[85%] capitalize text-base">
-                  It&apos;s now easier to study online
+                  prepare for your exams
                 </h2>
                 <div>
                   <div className="flex  lg:justify-center text-primary/50 lg:mt-[3rem] mt-2">
-                    <p className="lg:w-[31.5625rem] md:line-clamp-4 text-sm lg:text-[1.125rem]  px-3 capitalize line-clamp-2 lg:line-clamp-5">
-                      hello helloohelloohelloohelloohell snmnsmndsnsd
-                      dsnmdnsdnsdsnmds ndsndsnmdsnmsd
+                    <p className="lg:w-[31.5625rem] lg:-mt-4 md:line-clamp-4 text-sm tracking-wide lg:text-[1.125rem]  px-3 capitalize line-clamp-2 lg:line-clamp-5">
+                      Empowering Your Path to Success: Let&apos;s Get Ready for
+                      Your Exams
                     </p>
                   </div>
                   <div className="flex items-center justify-center">

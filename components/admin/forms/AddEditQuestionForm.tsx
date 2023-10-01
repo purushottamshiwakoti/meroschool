@@ -1,6 +1,6 @@
 "use client";
 
-import ReactQuill from "react-quill";
+import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 
 import { Chapter, Class, Course } from "@prisma/client";
@@ -17,7 +17,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 
 import {
@@ -27,11 +26,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 import { Loader } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   classId: z.string().min(2, {
@@ -51,6 +50,9 @@ const formSchema = z.object({
   }),
 });
 
+const ReactQuillNoSSR = dynamic(() => import("react-quill"), {
+  ssr: false,
+});
 interface AddEditQuestionFormProps {
   classes: Class[];
   courses: Course[];
@@ -62,7 +64,7 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
   courses,
   chapters,
 }) => {
-  const url = window.location.origin;
+  const url = typeof window !== "undefined" ? window.location.origin : "";
   const router = useRouter();
   const [classValue, setClassValue] = useState("");
   const [loading, setLoading] = useState(false);
@@ -267,7 +269,7 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
                 <FormLabel>Question</FormLabel>
                 <FormControl>
                   {/* <Input placeholder="shadcn" {...field} /> */}
-                  <ReactQuill
+                  <ReactQuillNoSSR
                     theme="snow"
                     {...field}
                     modules={modules}
@@ -287,7 +289,7 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
 
                 <FormControl>
                   {/* <Input placeholder="shadcn" {...field} />; */}
-                  <ReactQuill
+                  <ReactQuillNoSSR
                     theme="snow"
                     {...field}
                     modules={modules}

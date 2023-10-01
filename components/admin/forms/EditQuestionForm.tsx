@@ -65,7 +65,7 @@ const EditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
   defaultValues,
   id,
 }) => {
-  const url = window.location.origin;
+  const url = typeof window !== "undefined" ? window.location.origin : "";
   const router = useRouter();
   const [classValue, setClassValue] = useState("");
   const [loading, setLoading] = useState(false);

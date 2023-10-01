@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { getAuth } from "@clerk/nextjs/server";
 import prismadb from "@/lib/prismadb";
 
 export async function GET(req: any) {

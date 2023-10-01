@@ -6,7 +6,6 @@ import React from "react";
 import useAdminMenuStore from "@/hooks/useAdminMenuStore";
 import Avatar from "../common/Avatar";
 import { Input } from "../ui/input";
-import { UserButton } from "@clerk/nextjs";
 
 const Topbar = () => {
   const menuStore = useAdminMenuStore();
@@ -36,9 +35,7 @@ const Topbar = () => {
         />
         <Search className="w-5 h-5 ml-1 mt-1 text-gray-600 absolute left-2  " />
       </div>
-      <div>
-        <UserButton afterSignOutUrl="/" />
-      </div>
+      <div></div>
     </div>
   );
 };

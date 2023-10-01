@@ -91,7 +91,7 @@ export function DataTable<TData, TValue>({
                 onChange={(event) =>
                   table.getColumn(filterKey)?.setFilterValue(event.target.value)
                 }
-                className="max-w-lg lg:w-[25rem] item"
+                className="max-w-lg lg:topw-[25rem] item"
               />
             </div>
             <div className="hidden lg:block">

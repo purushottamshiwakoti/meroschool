@@ -1,7 +1,10 @@
 import prismadb from "@/lib/prismadb";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(req:NextRequest,{params}:{params:any}) {
+
+
+// console.log(body,param);
   try {
     const classDetail = await prismadb.class.findMany({
       include: {

@@ -14,7 +14,7 @@ const Navbar = () => {
   const path = usePathname();
   return (
     <div className={`${path.includes("admin") ? "hidden" : ""}`}>
-      <div className="fixed  w-full z-10  top-0  bg-[#FDFAF3] dark:bg-black/30  opacity-100 ">
+      <div className="fixed  w-full z-10  top-0  bg-[#FDFAF3] dark:bg-black/30  opacity-100 border-b ">
         <Container>
           <nav className="flex items-center justify-between  ">
             <div
@@ -45,7 +45,7 @@ const Navbar = () => {
               <NavLinks />
             </div>
             <div className="lg:order-5 md:order-5 hidden md:block lg:block ">
-              <ColorSwitcher />
+              {/* <ColorSwitcher /> */}
             </div>
           </nav>
         </Container>

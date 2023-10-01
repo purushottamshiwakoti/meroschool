@@ -15,14 +15,14 @@ const HeroSection = () => {
               <Circle />
             </div>
             <h2 className="lg:text-[2.8125rem] md:text-[1.5rem] text-[1.2rem]  text-left  lg:text-left font-bold  opacity-[85%]  ">
-              Its now easier to study online
+              It&apos;s now easier to study online
             </h2>
             <div className="flex justify-end">
               <Circle />
             </div>
-            <p className="mt-5 text-primary/50">
-              hello helloohelloohelloohelloohell snmnsmndsnsd dsnmdnsdnsdsnmds
-              ndsndsnmdsnmsd
+            <p className="mt-5 text-primary/50 tracking-wide">
+              Embrace the Future of Learning: It&apos;s Now Easier Than Ever to Study
+              Online
             </p>
             <div className="flex space-x-3 mt-5 justify-center lg:justify-normal">
               <Link href={"/class"}>

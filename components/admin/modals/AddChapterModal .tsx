@@ -55,7 +55,7 @@ const AddChapterModal: React.FC<AddClassModalProps> = ({
     resolver: zodResolver(formSchema),
     defaultValues: defaultValue,
   });
-  const url = window.location.origin;
+  const url = typeof window !== "undefined" ? window.location.origin : "";
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {

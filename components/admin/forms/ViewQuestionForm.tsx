@@ -63,7 +63,7 @@ const ViewQuestionForm: React.FC<AddEditQuestionFormProps> = ({
   chapters,
   defaultValues,
 }) => {
-  const url = window.location.origin;
+  const url = typeof window !== "undefined" ? window.location.origin : "";
   const router = useRouter();
   const [classValue, setClassValue] = useState("");
   const [loading, setLoading] = useState(false);

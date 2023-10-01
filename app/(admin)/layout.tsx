@@ -1,7 +1,6 @@
 import Sidebar from "@/components/admin/Sidebar";
 import Topbar from "@/components/admin/Topbar";
 
-import { ClerkProvider } from "@clerk/nextjs";
 
 export default function AdminLayout({
   children,
@@ -10,7 +9,6 @@ export default function AdminLayout({
 }) {
   return (
     <>
-      <ClerkProvider>
         <div>
           {/* <Sidebar /> */}
           <Topbar />
@@ -19,7 +17,6 @@ export default function AdminLayout({
             {children}
           </div>
         </div>
-      </ClerkProvider>
     </>
   );
 }

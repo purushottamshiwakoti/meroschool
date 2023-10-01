@@ -38,7 +38,7 @@ const NavLinks = () => {
                 className={`mt-5 text-[1.125rem]  font-[500]  text-primary/50 hover:bg-gray-400/20 p-1 rounded-md ${
                   pathname === item.href ? "border-b-4 border-[#EE7A79]" : ""
                 }`}
-                onClick={menuState.handleChange}
+                onClick={menuState.onClose}
               >
                 {item.name}
               </li>

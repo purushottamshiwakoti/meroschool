@@ -1,7 +1,10 @@
 import prismadb from "@/lib/prismadb";
 import { NextResponse } from "next/server";
 
-export async function GET(req: any, params: any) {
+export async function GET(req: any, params: any ) {
+
+
+
   try {
     const id = await params.params.id;
     const findQuestion = await prismadb.question.findUnique({

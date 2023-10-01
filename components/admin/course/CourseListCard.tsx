@@ -44,7 +44,7 @@ interface CourseListCardProps {
 }
 
 const CourseListCard: React.FC<CourseListCardProps> = ({ classes }) => {
-  const url = window.location.origin;
+  const url = typeof window !== "undefined" ? window.location.origin : "";
   const [classValue, setClassValue] = useState("");
   const [courseValue, setCourseValue] = useState("");
   const [chapterValue, setChapterValue] = useState("");

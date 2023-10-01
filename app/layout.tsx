@@ -1,5 +1,3 @@
-
-
 import Navbar from "@/components/user/nav/Navbar";
 import "./globals.css";
 import type { Metadata } from "next";
@@ -28,7 +26,8 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          // defaultTheme="system"
+          forcedTheme="light"
           enableSystem
           disableTransitionOnChange
         >
@@ -40,6 +39,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-
   );
 }
