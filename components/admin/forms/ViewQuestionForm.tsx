@@ -30,7 +30,7 @@ import axios from "axios";
 import { Loader } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   classId: z.string().min(2, {
@@ -236,7 +236,7 @@ const ViewQuestionForm: React.FC<AddEditQuestionFormProps> = ({
                       </SelectTrigger>
                       <SelectContent>
                         {chapters.map((chapter) =>
-                          chapter.chapterId === defaultValues.courseId ? (
+                          chapter.subjectId === defaultValues.courseId ? (
                             // <div>dsnnds</div>
                             <SelectItem value={chapter.id} key={chapter.id}>
                               {chapter.name}

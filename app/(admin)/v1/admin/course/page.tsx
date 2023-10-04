@@ -9,7 +9,7 @@ const Course = async () => {
     include: {
       Course: {
         include: {
-          Chapter: true,
+          Subject: true,
         },
       },
     },

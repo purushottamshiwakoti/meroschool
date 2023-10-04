@@ -14,10 +14,10 @@ export async function GET(req: any, params: any ) {
       select: {
         question: true,
         answer: true,
-        chapterId: true,
+        subjectId: true,
         classId: true,
         courseId: true,
-        chapters: {
+        subjects: {
           select: {
             name: true,
           },
@@ -66,7 +66,7 @@ export async function PATCH(req: any, { params }: { params: any }) {
         answer,
         classes: { connect: { id: classId } },
         courses: { connect: { id: courseId } },
-        chapters: { connect: { id: chapterId } },
+        subjects: { connect: { id: chapterId } },
       },
     });
 

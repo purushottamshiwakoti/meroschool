@@ -19,10 +19,10 @@ const CLassList: React.FC<CLassListProps> = ({ classes }) => {
   return (
     <>
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 space-x-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
           {classes.map((item) => (
             <div
-              className="bg-white w-[20rem] p-2 shadow-md rounded-md"
+              className="bg-white w-[20rem] p-2 shadow-md rounded-md mb-5   "
               key={item.id}
             >
               <Accordion type="single" collapsible defaultValue="item-1">
@@ -43,7 +43,7 @@ const CLassList: React.FC<CLassListProps> = ({ classes }) => {
                             </Link>
                           ))
                         ) : (
-                          <p>No chapters added yet!</p>
+                          <p>No Courses added yet!</p>
                         )}
                       </ul>
                     </div>

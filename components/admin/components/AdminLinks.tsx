@@ -4,6 +4,7 @@ import useAdminMenuStore from "@/hooks/useAdminMenuStore";
 import {
   Album,
   BookCopy,
+  BookOpenCheck,
   FileQuestion,
   LayoutDashboard,
   MapPin,
@@ -27,6 +28,12 @@ const links = [
     name: "Course",
     href: "/v1/admin/course",
     icon: <BookCopy />,
+  },
+  {
+    id: 5,
+    name: "Chapters",
+    href: "/v1/admin/chapters",
+    icon: <BookOpenCheck />,
   },
   {
     id: 3,

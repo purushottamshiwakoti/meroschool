@@ -25,7 +25,7 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { Loader } from "lucide-react";
-import toast from "react-hot-toast";
+import {toast} from "sonner";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import useAdminCourseModalStore from "@/hooks/useAdminCourseModalStore ";
 import useAdminChapterModalStore from "@/hooks/useAdminChapterModalStore ";
@@ -61,7 +61,7 @@ const AddChapterModal: React.FC<AddClassModalProps> = ({
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       setLoading(true);
-      const res = await axios.post(`${url}/api/chapter`, { values, courseId });
+      const res = await axios.post(`${url}/api/subject`, { values, courseId });
       toast.success(res.data.message);
       form.reset();
       adminModal.isOpen = false;

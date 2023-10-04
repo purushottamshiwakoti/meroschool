@@ -15,7 +15,7 @@ const EditQuestion = async ({ params }: { params: any }) => {
   const defaultValues = {
     classId: question?.classId,
     courseId: question?.courseId,
-    chapterId: question?.chapterId,
+    chapterId: question?.subjectId,
     question: question?.question,
     answer: question?.answer,
   };

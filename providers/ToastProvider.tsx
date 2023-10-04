@@ -1,8 +1,8 @@
 import React from "react";
-import { Toaster } from "react-hot-toast";
+import { Toaster } from "sonner";
 
 const ToastProvider = () => {
-  return <Toaster />;
+  return <Toaster position="top-center" richColors duration={2000} />;
 };
 
 export default ToastProvider;

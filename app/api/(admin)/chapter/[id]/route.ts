@@ -1,74 +1,32 @@
-import { NextResponse } from "next/server";
 import prismadb from "@/lib/prismadb";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: any,params:any) {
-    try {
-        const id=await params.params.id;
-        const findCourse=await prismadb.chapter.findUnique({
-            where:{
-                id
-            }
-        });
-        if(!findCourse) return  NextResponse.json({message: "No class found"},{status:500});
-  return NextResponse.json({message: "sasja",class:findCourse},{status:200});
-        
-    } catch (error) {
-  return NextResponse.json({error: "sansnanb"},{status:500});
-        
-    }
-
-}
-
-export async function PATCH(req: any, params: any) {
-  try {
-      const id = await params.params.id;
-      const { name } = await req.json();
-
-      // Check if the course exists before updating
-      const findChapter = await prismadb.chapter.findFirst({
-          where: {
-              id
-          }
-      });
-
-      if (!findChapter) {
-          return NextResponse.json({ error: "Chapter not found" }, { status: 404 });
-      }
-
-      // Now that we've confirmed the course exists, update it
-      const updateChapter = await prismadb.chapter.update({
-          where: {
-              id
-          },
-          data: {
-              name
-          },
-      });
-
-      return NextResponse.json({ message: "Successfully updated chapter" }, { status: 200 });
-
-  } catch (error) {
-      console.error(error);
-      return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+export async function PATCH(req: NextRequest,{params}:{params:any}) {
+    const id=params.id;
+    // const { userId } = getAuth(req);
+    // if(!userId) return NextResponse.json({message:"Unauthenticated"},{status:403});
+   try {
+    const body=await req.json();
+    const {classId,courseId,subjectId,name}=body;
+  
+    const updateChapter = await prismadb.chapter.update({
+    where:{
+        id
+    },
+    data: { 
+        name:name,
+      slug:name.replace(/\s/g, '-').toLowerCase(),
+     classId:classId,
+     courseId:courseId,
+     subjectId:subjectId,
+       },
+    });
+    return NextResponse.json({message: "Successfully updated chapter",updateChapter},{status:200});
+  
+    
+   } catch (error) {
+    console.log(error);
+    return NextResponse.json({error: error},{status:500});
+    
+   }
   }
-}
-
-export async function DELETE(req: any,params:any) {
-  try {
-    const id=await params.params.id;
-   
-      await prismadb.chapter.delete({
-          where:{
-              id
-          }
-      });
-
-return NextResponse.json({message: "Successfully deleted chapter",},{status:200});
-      
-  } catch (error) {
-return NextResponse.json({error: error},{status:500});
-      
-  }
-
-}
-

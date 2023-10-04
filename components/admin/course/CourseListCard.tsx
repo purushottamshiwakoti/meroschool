@@ -15,7 +15,7 @@ import useAdminCourseModalStore from "@/hooks/useAdminCourseModalStore ";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import AdminContainer from "../components/AdminContainer";
 import AddChapterModal from "../modals/AddChapterModal ";
 import AddCourseModal from "../modals/AddCourseModal ";
@@ -153,7 +153,7 @@ const CourseListCard: React.FC<CourseListCardProps> = ({ classes }) => {
   };
   const handleDeleteChapter = async (id: string) => {
     try {
-      const res = await axios.delete(`${url}/api/chapter/${id}`);
+      const res = await axios.delete(`${url}/api/subject/${id}`);
       setLoading(true);
       toast.success(res.data.message);
       router.refresh();
@@ -172,7 +172,7 @@ const CourseListCard: React.FC<CourseListCardProps> = ({ classes }) => {
   ) => {
     e.preventDefault();
     try {
-      const res = await axios.patch(`${url}/api/chapter/${id}`, {
+      const res = await axios.patch(`${url}/api/subject/${id}`, {
         name: chapterName,
       });
       toast.success(res.data.message);
@@ -360,7 +360,7 @@ const CourseListCard: React.FC<CourseListCardProps> = ({ classes }) => {
                                           </div>
                                         </AccordionTrigger>
                                         <AccordionContent>
-                                          {((course as any).Chapter || []).map(
+                                          {((course as any).Subject || []).map(
                                             (chapter: any) => (
                                               <div
                                                 className="flex justify-between items-center px-2 py-2"
@@ -432,7 +432,7 @@ const CourseListCard: React.FC<CourseListCardProps> = ({ classes }) => {
                                             }
                                           >
                                             <PlusCircle className="w-4 h-4 mr-1" />
-                                            Add Chapter
+                                            Add Subject
                                           </div>
                                         </AccordionContent>
                                       </AccordionItem>

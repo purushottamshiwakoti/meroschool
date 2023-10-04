@@ -17,6 +17,7 @@ model Class {
   updated_at DateTime   @updatedAt
   Course     Course[]
   Question   Question[]
+  Chapter    Chapter[]
 }
 
 model Course {
@@ -27,28 +28,45 @@ model Course {
   class      Class      @relation(fields: [courseId], references: [id], onDelete: Cascade)
   created_at DateTime   @default(now())
   updated_at DateTime   @updatedAt
-  Chapter    Chapter[]
   Question   Question[]
+  Subject    Subject[]
+  Chapter    Chapter[]
 }
 
-model Chapter {
+model Subject {
   id         String     @id @default(auto()) @map("_id") @db.ObjectId
   name       String
   slug       String
-  chapterId  String     @db.ObjectId
-  courses    Course     @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  subjectId  String     @db.ObjectId
+  courses    Course     @relation(fields: [subjectId], references: [id], onDelete: Cascade)
   created_at DateTime   @default(now())
   updated_at DateTime   @updatedAt
   Question   Question[]
+  Chapter    Chapter[]
+}
+
+model Chapter {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  slug      String
+  subjectId String  @db.ObjectId
+  subjects  Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  courseId  String  @db.ObjectId
+  courses   Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  classId   String  @db.ObjectId
+  class     Class   @relation(fields: [classId], references: [id], onDelete: Cascade)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 model Question {
   id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  chapterId String  @db.ObjectId
+  subjectId String  @db.ObjectId
   courseId  String  @db.ObjectId
   classId   String  @db.ObjectId
   courses   Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  chapters  Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  subjects  Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
   classes   Class   @relation(fields: [classId], references: [id], onDelete: Cascade)
 
   question String

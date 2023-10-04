@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 
-import { Chapter, Class, Course } from "@prisma/client";
+import { Chapter, Class, Course, Subject } from "@prisma/client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -30,7 +30,7 @@ import axios from "axios";
 import { Loader } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   classId: z.string().min(2, {
@@ -56,13 +56,13 @@ const ReactQuillNoSSR = dynamic(() => import("react-quill"), {
 interface AddEditQuestionFormProps {
   classes: Class[];
   courses: Course[];
-  chapters: Chapter[];
+  subjects: Subject[];
 }
 
 const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
   classes,
   courses,
-  chapters,
+  subjects,
 }) => {
   const url = typeof window !== "undefined" ? window.location.origin : "";
   const router = useRouter();
@@ -193,17 +193,14 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
                       </SelectTrigger>
                       <SelectContent>
                         {classValue ? (
-                          courses.map((course) =>
-                            course.courseId === classValue ? (
-                              // <div>dsnnds</div>
-                              <SelectItem value={course.id} key={course.id}>
-                                {course.name}
-                              </SelectItem>
-                            ) : (
-                              <p className="text-rose-600" key={classValue}>
-                                No course found
-                              </p>
-                            )
+                          courses.map(
+                            (course) =>
+                              course.courseId === classValue && (
+                                // <div>dsnnds</div>
+                                <SelectItem value={course.id} key={course.id}>
+                                  {course.name}
+                                </SelectItem>
+                              )
                           )
                         ) : (
                           <p className="text-rose-600">
@@ -236,17 +233,14 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
                       </SelectTrigger>
                       <SelectContent>
                         {courseValue ? (
-                          chapters.map((chapter) =>
-                            chapter.chapterId === courseValue ? (
-                              // <div>dsnnds</div>
-                              <SelectItem value={chapter.id} key={chapter.id}>
-                                {chapter.name}
-                              </SelectItem>
-                            ) : (
-                              <p className="text-rose-600" key={courseValue}>
-                                No chapter found
-                              </p>
-                            )
+                          subjects.map(
+                            (subject) =>
+                              subject.subjectId === courseValue && (
+                                // <div>dsnnds</div>
+                                <SelectItem value={subject.id} key={subject.id}>
+                                  {subject.name}
+                                </SelectItem>
+                              )
                           )
                         ) : (
                           <p className="text-rose-600">

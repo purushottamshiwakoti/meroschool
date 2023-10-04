@@ -26,7 +26,7 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { Loader } from "lucide-react";
-import toast from "react-hot-toast";
+import {toast} from "sonner";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import useAdminCourseModalStore from "@/hooks/useAdminCourseModalStore ";
 

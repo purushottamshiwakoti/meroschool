@@ -15,18 +15,25 @@ export interface QuestionAnswerProps {
     slug: string;
   }[];
   slug: string;
+  searchParams: string;
 }
 
 const QuestionAnswer: React.FC<QuestionAnswerProps> = ({
   questions,
   chapters,
   slug,
+  searchParams,
 }) => {
   return (
     <Container>
       <div className="">
         <div className="mt-[5rem] md:mt-[6.3rem]  ">
-          <ChapterList chapters={chapters} questions={questions} slug={slug} />
+          <ChapterList
+            chapters={chapters}
+            questions={questions}
+            slug={slug}
+            searchParams={searchParams}
+          />
         </div>
         {/* <QuestionAnswerList questions={questions} /> */}
       </div>

@@ -46,7 +46,7 @@ export async function DELETE(req: any,params:any) {
   try {
     const id=await params.params.id;
    
-      const updateClass=await prismadb.class.delete({
+      const deleteClass=await prismadb.class.delete({
           where:{
               id
           }
@@ -55,6 +55,7 @@ export async function DELETE(req: any,params:any) {
 return NextResponse.json({message: "Successfully deleted class",},{status:200});
       
   } catch (error) {
+    console.log(error);
 return NextResponse.json({error: "sansnanb"},{status:500});
       
   }

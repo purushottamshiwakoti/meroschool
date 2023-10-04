@@ -10,7 +10,7 @@ export async function GET(req:NextRequest,{params}:{params:any}) {
       include: {
         Course: {
           include: {
-            Chapter: true,
+            Subject: true,
           },
         },
       },
@@ -38,7 +38,7 @@ export async function POST(req: any) {
         answer,
         classes: { connect: { id: classId } },
         courses: { connect: { id: courseId } },
-        chapters: { connect: { id: chapterId } },
+        subjects: { connect: { id: chapterId } },
       },
     });
 

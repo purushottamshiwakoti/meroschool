@@ -10,7 +10,7 @@ import React from "react";
 const Question = async () => {
   const questions = await prismadb.question.findMany({
     include: {
-      chapters: {
+      subjects: {
         select: {
           name: true,
         },
@@ -30,7 +30,7 @@ const Question = async () => {
 
   const data = questions.map((item) => ({
     id: item.id,
-    chapter: item.chapters.name,
+    chapter: item.subjects.name,
     class: item.classes.name,
     course: item.courses.name,
     question: item.question,
