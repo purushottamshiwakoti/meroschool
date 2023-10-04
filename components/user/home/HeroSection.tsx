@@ -20,9 +20,9 @@ const HeroSection = () => {
             <div className="flex justify-end">
               <Circle />
             </div>
-            <p className="mt-5 text-primary/50 tracking-wide">
-              Embrace the Future of Learning: It&apos;s Now Easier Than Ever to Study
-              Online
+            <p className="mt-5 text-primary/80 tracking-wide">
+              Embrace the Future of Learning: It&apos;s Now Easier Than Ever to
+              Study Online
             </p>
             <div className="flex space-x-3 mt-5 justify-center lg:justify-normal">
               <Link href={"/class"}>

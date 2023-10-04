@@ -14,7 +14,7 @@ const Navbar = () => {
   const path = usePathname();
   return (
     <div className={`${path.includes("admin") ? "hidden" : ""}`}>
-      <div className="fixed  w-full z-10  top-0  bg-[#FDFAF3] dark:bg-black/30  opacity-100 border-b ">
+      <div className="fixed  w-full z-10  top-0  bg-[#FFF5E0] dark:bg-black/30  opacity-100 border-b ">
         <Container>
           <nav className="flex items-center justify-between  ">
             <div
@@ -29,7 +29,7 @@ const Navbar = () => {
                     width={32}
                     height={32}
                     alt="favicon"
-                    className="bg-[#FDFAF3]"
+                    className="bg-[#FFF5E0]"
                   />
                   <h2 className="text-lg font-bold text-primary/80">
                     BBS Tutorial

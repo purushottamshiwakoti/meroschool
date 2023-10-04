@@ -13,7 +13,7 @@ const Footer = () => {
       <div className={`mt-10 ${path.includes("admin") && "hidden"}`}>
         <Separator />
         <div className="flex items-center justify-center w-full p-5">
-          <p className="text-primary/60 ">
+          <p className="text-primary/80 ">
             Copyright ©{date.getFullYear()}. All rights reserved
           </p>
         </div>

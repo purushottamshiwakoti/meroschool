@@ -32,8 +32,8 @@ const StudyOnlineSection = () => {
                   prepare for your exams
                 </h2>
                 <div>
-                  <div className="flex  lg:justify-center text-primary/50 lg:mt-[3rem] mt-2">
-                    <p className="lg:w-[31.5625rem] lg:-mt-4 md:line-clamp-4 text-sm tracking-wide lg:text-[1.125rem]  px-3 capitalize line-clamp-2 lg:line-clamp-5">
+                  <div className="flex  lg:justify-center text-primary/80 lg:mt-[3rem] mt-2">
+                    <p className="lg:w-[31.5625rem] lg:-mt-4 md:line-clamp-4 text-sm tracking-wide lg:text-[1.125rem] leading-7	  px-3 capitalize line-clamp-2 lg:line-clamp-5">
                       Empowering Your Path to Success: Let&apos;s Get Ready for
                       Your Exams
                     </p>
@@ -60,7 +60,7 @@ const StudyOnlineSection = () => {
           >
             <path
               fill="#EE7A79"
-              fillOpacity="0.15"
+              fillOpacity="0.3"
               d="M0 12.125c347.5 103.5 1084-55.5 1240 0v493c-475.488 63.973-741.957 100.701-1240 0v-493z"
             ></path>
           </svg>

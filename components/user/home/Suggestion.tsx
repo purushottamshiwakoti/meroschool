@@ -11,7 +11,7 @@ const Suggestion = () => {
             <span className="opacity-[85%]">Sugget</span>
             <span className="text-[#EE7A79]"> Us</span>
           </h2>
-          <p className="mt-4 text-primary/50 capitalize">
+          <p className="mt-4 text-primary/80 capitalize">
             How can we improve our website in your assistance
           </p>
         </div>
