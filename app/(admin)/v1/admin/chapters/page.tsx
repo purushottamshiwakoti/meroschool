@@ -7,19 +7,18 @@ import Link from "next/link";
 import React from "react";
 import { ChapterColumns } from "./create/components/ChapterColumns";
 import DeleteChapter from "./components/DeleteChapter";
-
 // const url = typeof window !== "undefined" ? window.location.origin : "";
+// // const url = window.location.origin;
+// const api = `${url}/api/chapter`;
+// console.log({ api });
+// console.log({ url });
 
 async function getChapters() {
-  const res = await fetch(`/api/chapter`, {
-    next: {
-      // revalidate: 1000,
-    },
-  });
+  const res = await fetch(`http://localhost:3000/api/chapter`);
   return res.json();
 }
 
-const page = async () => {
+export default async function Page() {
   // const chapter = await prismadb.chapter.findMany({
   //   include: {
   //     courses: true,
@@ -65,6 +64,4 @@ const page = async () => {
       </AdminContainer>
     </>
   );
-};
-
-export default page;
+}
