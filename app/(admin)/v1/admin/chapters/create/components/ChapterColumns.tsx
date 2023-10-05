@@ -16,10 +16,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import DeleteChapter from "../../components/DeleteChapter";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import useAdminChapterModalStore from "@/hooks/useAdminChapterModalStore ";
 
 export type Chapter = {
   id: string;

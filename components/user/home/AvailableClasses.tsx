@@ -21,26 +21,26 @@ const AvailableClasses = () => {
             title={"bbs 1<sup>st</sup> year"}
             image="/assets/class-1.svg"
             description="You can find all resources related to BBS 1st year here.... "
-            href="/bbs1styear"
+            href="/bbs-1st-year"
           />
           <AvailableClassesCard
             title={"bbs 2<sup>nd</sup> year"}
             image="/assets/class-4.svg"
             description="You can find all resources related to BBS 2nd year here.... "
-            href="/bbs2ndyear"
+            href="/bbs-2nd-year"
           />
 
           <AvailableClassesCard
             title={"bbs 3<sup>rd</sup> year"}
             image="/assets/class-3.svg"
             description="You can find all resources related to BBS 3rd year here.... "
-            href="/bbs3rdyear"
+            href="/bbs-3rd-year"
           />
           <AvailableClassesCard
             title={"bbs 4<sup>th</sup> year"}
             image="/assets/class-2.svg"
             description="You can find all resources related to BBS 4h year here.... "
-            href="/bbs4thyear"
+            href="/bbs-4th-year"
           />
         </div>
       </div>

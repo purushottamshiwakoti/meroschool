@@ -27,7 +27,7 @@ export async function GET(req:NextRequest,{params}:{params:any}) {
 
 export async function POST(req: any) {
   try {
-    const { courseId, classId, chapterId, question, answer } = await req.json();
+    const { courseId, classId, chapterId,subjectId, question, answer } = await req.json();
 
     // console.log(courseId, classId, chapterId, question, answer);
 
@@ -38,7 +38,8 @@ export async function POST(req: any) {
         answer,
         classes: { connect: { id: classId } },
         courses: { connect: { id: courseId } },
-        subjects: { connect: { id: chapterId } },
+        subjects: { connect: { id: subjectId } },
+        chapters: { connect: { id: chapterId } },
       },
     });
 

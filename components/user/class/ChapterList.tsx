@@ -38,21 +38,27 @@ const ChapterList: React.FC<ChapterListProps> = ({
   searchParams,
 }) => {
   const [searchValue, setSearchValue] = useState();
-  const [allQuestions, setAllQuestions] = useState(questions);
+  // const [allQuestions, setAllQuestions] = useState(questions);
   const params = useSearchParams();
   const chapterName = params.get("chapter");
   const router = useRouter();
+  const path = usePathname();
+  const search = useSearchParams();
+  console.log(search);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    alert(searchValue);
-  };
+  // const handleSearch = (e) => {
+  //   e.preventDefault();
+  //   if (searchValue) {
+  //     alert(searchValue);
+  //     router.replace(path, { params: searchValue });
+  //   }
+  // };
 
   return (
     <>
       {/* <div className="flex space-x-8"> */}
       <div>
-        <form onClick={(e: any) => handleSearch(e)}>
+        <form>
           <div
             className="flex  items-center border-primary/50 border-1 rounded-md mr-[10rem] shadow-md focus-visible:ring-[#EE7A79] fixed  w-[92%] md:w-[95.5%] lg:w-[84%] -mt-[3rem] lg:-mt-[4.2rem] bg-white backdrop-blur-sm"
             // style={{ width: "92%" }}
@@ -64,9 +70,18 @@ const ChapterList: React.FC<ChapterListProps> = ({
               onChange={(e: any) => setSearchValue(e.target.value)}
             />
             <Search className="w-5 h-5 mr-2 ml-1 text-[#EE7A79] absolute left-2" />
-            <button type="submit" className="hidden">
-              Search
-            </button>
+            <Link
+              href={{
+                query: {
+                  ...(typeof searchParams === 'object' ? searchParams : {}),
+                  q: searchValue,
+                },
+              }}
+            >
+              <button type="submit" className="hidden">
+                Search
+              </button>
+            </Link>
           </div>
         </form>
         <div className="flex flex-nowrap space-x-3 lg:space-x-10 w-full overflow-x-scroll mt-[7rem]  md:mt-[9rem]  lg:mt-[9.5rem]">
@@ -75,6 +90,7 @@ const ChapterList: React.FC<ChapterListProps> = ({
               <Link
                 href={{
                   query: {
+                    ...(typeof searchParams === "object" ? searchParams : {}),
                     chapter: chapter.slug,
                   },
                 }}
@@ -95,14 +111,14 @@ const ChapterList: React.FC<ChapterListProps> = ({
       {/* <QuestionAnswerList /> */}
       {/* </div> */}
       <div className="">
-        {!allQuestions.length && (
+        {!questions.length && (
           <div className="mt-10">
             <p className="text-center text-rose-600 text-lg">
               No question found!{" "}
             </p>
           </div>
         )}
-        {allQuestions.map((item) => (
+        {questions.map((item) => (
           <div className="mt-4 bg-white p-4 rounded-md shadow-md" key={item.id}>
             {/* <h2 className="text-lg text-[#EE7A79] font-semibold flex">
                   {parse(item.question)}

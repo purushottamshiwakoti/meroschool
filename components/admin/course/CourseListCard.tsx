@@ -296,7 +296,7 @@ const CourseListCard: React.FC<CourseListCardProps> = ({ classes }) => {
                         </AccordionTrigger>
                         <AccordionContent>
                           <div>
-                            <ul className="space-y-2 text-primary/80  ">
+                            <div className="space-y-2 text-primary/80  ">
                               {((item as any).Course || []).map(
                                 (course: CourseType) => (
                                   <div
@@ -366,7 +366,7 @@ const CourseListCard: React.FC<CourseListCardProps> = ({ classes }) => {
                                                 className="flex justify-between items-center px-2 py-2"
                                                 key={chapter.id}
                                               >
-                                                <ul className="text-[#EE7A79] list-decimal">
+                                                <div className="text-[#EE7A79] list-decimal">
                                                   {/* <li> {chapter.name}</li> */}
                                                   {editChapterMode ===
                                                   chapter.id ? (
@@ -399,7 +399,7 @@ const CourseListCard: React.FC<CourseListCardProps> = ({ classes }) => {
                                                       {chapter.name}
                                                     </h2>
                                                   )}
-                                                </ul>
+                                                </div>
                                                 <div className="flex space-x-2">
                                                   <Pencil
                                                     className="w-4 h-4"
@@ -440,7 +440,7 @@ const CourseListCard: React.FC<CourseListCardProps> = ({ classes }) => {
                                   </div>
                                 )
                               )}
-                            </ul>
+                            </div>
                             <div
                               className="flex items-center  text-white p-1 rounded-md shadow-md cursor-pointer mt-4 bg-[#EE7A79] "
                               onClick={() => addCourse(item.id)}

@@ -25,15 +25,21 @@ const Question = async () => {
           name: true,
         },
       },
+      chapters: {
+        select: {
+          name: true,
+        },
+      },
     },
   });
 
   const data = questions.map((item) => ({
     id: item.id,
-    chapter: item.subjects.name,
+    subject: item.subjects.name,
     class: item.classes.name,
     course: item.courses.name,
     question: item.question,
+    chapter: item.chapters.name,
   }));
   return (
     <AdminContainer>

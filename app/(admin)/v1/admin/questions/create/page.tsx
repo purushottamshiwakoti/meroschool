@@ -19,8 +19,8 @@ const CreateQuestion = async () => {
     },
   });
   const courses = await prismadb.course.findMany();
-  const chapters = await prismadb.subject.findMany();
-  console.log(chapters);
+  const subjects = await prismadb.subject.findMany();
+  const chapters = await prismadb.chapter.findMany();
 
   return (
     <>
@@ -46,7 +46,8 @@ const CreateQuestion = async () => {
             <AddEditQuestionForm
               classes={classes}
               courses={courses}
-              subjects={chapters}
+              subjects={subjects}
+              chapters={chapters}
             />
           </div>
         </div>

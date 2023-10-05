@@ -1,6 +1,25 @@
 import prismadb from "@/lib/prismadb";
 import { NextRequest, NextResponse } from "next/server";
 
+
+export async function GET(){
+try {
+  const chapter = await prismadb.chapter.findMany({
+    include: {
+      courses: true,
+      subjects: true,
+      class: true,
+    },
+  });
+  return NextResponse.json({message: "Successfully added chapter",chapter},{status:200});
+  
+  
+} catch (error) {
+  return NextResponse.json({error: error},{status:500});
+  
+}
+}
+
 export async function POST(req: NextRequest) {
     // const { userId } = getAuth(req);
     // if(!userId) return NextResponse.json({message:"Unauthenticated"},{status:403});

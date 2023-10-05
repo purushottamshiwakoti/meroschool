@@ -33,19 +33,19 @@ const CLassList: React.FC<CLassListProps> = ({ classes }) => {
                   </AccordionTrigger>
                   <AccordionContent>
                     <div className="">
-                      <ul className="space-y-5 tex-lg text-primary/60 font-semibold">
+                      <div className="space-y-5 tex-lg text-primary/60 font-semibold">
                         {((item as any).Course || []).length > 0 ? (
                           ((item as any).Course || []).map((course: Course) => (
                             <Link href={`class/${course.slug}`} key={course.id}>
-                              <li className="p-3 hover:bg-primary/5">
+                              <div className="p-3 hover:bg-primary/5">
                                 {course.name}
-                              </li>
+                              </div>
                             </Link>
                           ))
                         ) : (
                           <p>No Courses added yet!</p>
                         )}
-                      </ul>
+                      </div>
                     </div>
                   </AccordionContent>
                 </AccordionItem>

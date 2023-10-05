@@ -8,21 +8,35 @@ import React from "react";
 import { ChapterColumns } from "./create/components/ChapterColumns";
 import DeleteChapter from "./components/DeleteChapter";
 
-const page = async () => {
-  const chapter = await prismadb.chapter.findMany({
-    include: {
-      courses: true,
-      subjects: true,
-      class: true,
+// const url = typeof window !== "undefined" ? window.location.origin : "";
+
+async function getChapters() {
+  const res = await fetch(`/api/chapter`, {
+    next: {
+      // revalidate: 1000,
     },
   });
-  const data = chapter.map((item) => ({
+  return res.json();
+}
+
+const page = async () => {
+  // const chapter = await prismadb.chapter.findMany({
+  //   include: {
+  //     courses: true,
+  //     subjects: true,
+  //     class: true,
+  //   },
+  // });
+  const chapter = await getChapters();
+
+  const data = chapter.chapter.map((item: any) => ({
     id: item.id,
     class: item.class.name,
     subject: item.subjects.name,
     course: item.courses.name,
     chapter: item.name,
   }));
+
   return (
     <>
       <AdminContainer>

@@ -56,8 +56,9 @@ model Chapter {
   classId   String  @db.ObjectId
   class     Class   @relation(fields: [classId], references: [id], onDelete: Cascade)
 
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  Question   Question[]
 }
 
 model Question {
@@ -65,10 +66,11 @@ model Question {
   subjectId String  @db.ObjectId
   courseId  String  @db.ObjectId
   classId   String  @db.ObjectId
+  chapterId String  @db.ObjectId
   courses   Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
   subjects  Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
   classes   Class   @relation(fields: [classId], references: [id], onDelete: Cascade)
-
-  question String
-  answer   String
+  chapters  Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  question  String
+  answer    String
 }

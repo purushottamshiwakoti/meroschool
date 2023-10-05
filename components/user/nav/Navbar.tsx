@@ -31,7 +31,7 @@ const Navbar = () => {
                     alt="favicon"
                     className="bg-[#FFF5E0]"
                   />
-                  <h2 className="text-lg font-bold text-primary/80">
+                  <h2 className="text-lg font-bold text-[#EE7A79]">
                     BBS Tutorial
                   </h2>
                 </div>

@@ -39,6 +39,9 @@ const formSchema = z.object({
   courseId: z.string().min(2, {
     message: "Course must be selected",
   }),
+  subjectId: z.string().min(2, {
+    message: "Subject must be selected",
+  }),
   chapterId: z.string().min(2, {
     message: "Chapter must be selected",
   }),
@@ -57,18 +60,21 @@ interface AddEditQuestionFormProps {
   classes: Class[];
   courses: Course[];
   subjects: Subject[];
+  chapters: Chapter[];
 }
 
 const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
   classes,
   courses,
   subjects,
+  chapters,
 }) => {
   const url = typeof window !== "undefined" ? window.location.origin : "";
   const router = useRouter();
   const [classValue, setClassValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [courseValue, setCourseValue] = useState("");
+  const [subjectValue, setSubjectValue] = useState("");
   const modules = {
     toolbar: [
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -106,7 +112,7 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
     defaultValues: {
       classId: "",
       courseId: "",
-      chapterId: "",
+      subjectId: "",
       question: "",
       answer: "",
     },
@@ -216,20 +222,21 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
             />
             <FormField
               control={form.control}
-              name="chapterId"
+              name="subjectId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Select Chapter</FormLabel>
+                  <FormLabel>Select Subject</FormLabel>
                   <FormControl>
                     {/* <Input placeholder="shadcn" {...field} /> */}
                     <Select
                       onValueChange={(value) => {
-                        field.onChange(value); // Update the form field value
+                        field.onChange(value);
+                        setSubjectValue(value);
                       }}
                       defaultValue={field.value}
                     >
                       <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Select Course" />
+                        <SelectValue placeholder="Select Subject" />
                       </SelectTrigger>
                       <SelectContent>
                         {courseValue ? (
@@ -245,6 +252,44 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
                         ) : (
                           <p className="text-rose-600">
                             Please select course first
+                          </p>
+                        )}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="chapterId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Select Chapter</FormLabel>
+                  <FormControl>
+                    <Select
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                      }}
+                      defaultValue={field.value}
+                    >
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Select Subject" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {subjectValue ? (
+                          chapters.map(
+                            (chapter) =>
+                              chapter.subjectId === subjectValue && (
+                                <SelectItem value={chapter.id} key={chapter.id}>
+                                  {chapter.name}
+                                </SelectItem>
+                              )
+                          )
+                        ) : (
+                          <p className="text-rose-600">
+                            Please select a subject first
                           </p>
                         )}
                       </SelectContent>

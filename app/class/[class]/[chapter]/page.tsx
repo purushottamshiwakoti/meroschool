@@ -10,35 +10,36 @@ const page = async ({
   params: any;
   searchParams: any;
 }) => {
-  const slug = params.slug;
-  console.log(slug);
-  const search = searchParams;
-  console.log({ search });
+  const courseName = params.chapter;
+  const searchKey = searchParams.q;
 
   const questionsList = await prismadb.question.findMany({
     where: {
-      courses: {
-        slug,
+      question: {
+        contains: searchKey,
+        mode: "insensitive",
+      },
+      subjects: {
+        slug: courseName,
+      },
+      chapters: {
+        slug: searchParams.chapter,
       },
     },
   });
-  console.log(questionsList);
-  console.log({ questionsList });
   const chapterList = await prismadb.chapter.findMany({
     where: {
-      courses: {
-        slug: slug,
+      subjects: {
+        slug: courseName,
       },
     },
   });
 
-  console.log({ chapterList });
   const chapters = chapterList.map((item) => ({
     id: item.id,
     name: item.name,
     slug: item.slug,
   }));
-  console.log(chapters);
   const questions = questionsList.map((item) => ({
     id: item.id,
     question: item.question,
@@ -50,7 +51,7 @@ const page = async ({
         <QuestionAnswer
           questions={questions}
           chapters={chapters}
-          slug={slug}
+          slug={courseName}
           searchParams={searchParams}
         />
       </div>

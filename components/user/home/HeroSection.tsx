@@ -48,7 +48,8 @@ const HeroSection = () => {
                   alt="hero"
                   width={436}
                   height={436}
-                  priority
+                  loading="eager"
+                  // priority
                 />
               </Suspense>
             </div>
