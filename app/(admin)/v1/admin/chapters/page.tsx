@@ -14,7 +14,7 @@ import DeleteChapter from "./components/DeleteChapter";
 // console.log({ url });
 
 async function getChapters() {
-  const res = await fetch(`http://localhost:3000/api/chapter`);
+  const res = await fetch(`${process.env.NEXT_URL}/api/chapter`);
   return res.json();
 }
 
@@ -26,6 +26,9 @@ export default async function Page() {
   //     class: true,
   //   },
   // });
+  if (!process.env.NEXT_URL) {
+    return null;
+  }
   const chapter = await getChapters();
 
   const data = chapter.chapter.map((item: any) => ({
