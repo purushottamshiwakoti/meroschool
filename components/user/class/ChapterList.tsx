@@ -73,7 +73,7 @@ const ChapterList: React.FC<ChapterListProps> = ({
             <Link
               href={{
                 query: {
-                  ...(typeof searchParams === 'object' ? searchParams : {}),
+                  ...(typeof searchParams === "object" ? searchParams : {}),
                   q: searchValue,
                 },
               }}
@@ -99,7 +99,7 @@ const ChapterList: React.FC<ChapterListProps> = ({
                   variant={
                     chapterName === chapter.slug ? "default" : "secondary"
                   }
-                  className="p-10"
+                  className="p-10 truncate"
                 >
                   {chapter.name}
                 </Button>

@@ -13,25 +13,27 @@ import DeleteChapter from "./components/DeleteChapter";
 // console.log({ api });
 // console.log({ url });
 
-async function getChapters() {
-  const res = await fetch(`${process.env.NEXT_URL}/api/chapter`);
-  return res.json();
-}
+// async function getChapters() {
+//   const res = await fetch(`${process.env.NEXT_URL}/api/chapter`);
+//   return res.json();
+// }
+export const revalidate = 1000;
 
 export default async function Page() {
-  // const chapter = await prismadb.chapter.findMany({
-  //   include: {
-  //     courses: true,
-  //     subjects: true,
-  //     class: true,
-  //   },
-  // });
-  if (!process.env.NEXT_URL) {
-    return null;
-  }
-  const chapter = await getChapters();
+  const chapter = await prismadb.chapter.findMany({
+    include: {
+      courses: true,
+      subjects: true,
+      class: true,
+    },
+  });
 
-  const data = chapter.chapter.map((item: any) => ({
+  // if (!process.env.NEXT_URL) {
+  //   return null;
+  // }
+  // const chapter = await getChapters();
+
+  const data = chapter.map((item: any) => ({
     id: item.id,
     class: item.class.name,
     subject: item.subjects.name,

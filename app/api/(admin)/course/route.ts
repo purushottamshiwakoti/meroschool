@@ -3,6 +3,7 @@ import prismadb from "@/lib/prismadb";
 
 export async function GET(req: any) {
 
+  
   return NextResponse.json({ message: "This is course page" }, { status: 200 });
 }
 export async function POST(req: any,params:any) {
@@ -11,6 +12,7 @@ export async function POST(req: any,params:any) {
   
   // const id=await params.params.id;
   // console.log(id);
+  
  try {
    const {classId,values}=await req.json();
  
