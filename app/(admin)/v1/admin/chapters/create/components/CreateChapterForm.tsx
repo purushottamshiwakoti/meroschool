@@ -81,8 +81,8 @@ const CreateChapterForm: React.FC<CreateChapterFormProps> = ({
       const res = await axios.post(`${url}/api/chapter`, values);
       toast.success(res.data.message);
       form.reset();
-      router.push("/v1/admin/chapters");
       router.refresh();
+      router.push("/v1/admin/chapters");
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");

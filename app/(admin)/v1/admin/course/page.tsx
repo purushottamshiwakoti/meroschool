@@ -1,20 +1,12 @@
 import CourseListCard from "@/components/admin/course/CourseListCard";
-import prismadb from "@/lib/prismadb";
 
+async function getClasses() {
+  const res = await fetch(`${process.env.NEXT_URL}/api/class`,{cache:"no-store"});
+  return res.json();
+}
 const Course = async () => {
-  const classes: any[] = await prismadb.class.findMany({
-    orderBy: {
-      created_at: "desc",
-    },
-    include: {
-      Course: {
-        include: {
-          Subject: true,
-        },
-      },
-    },
-  });
-
+  const getClass = await getClasses();
+  const classes = await getClass.classes;
   return (
     <>
       <div>
@@ -27,3 +19,4 @@ const Course = async () => {
 };
 
 export default Course;
+

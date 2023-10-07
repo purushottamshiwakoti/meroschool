@@ -30,26 +30,27 @@ const page = async ({ params }: { params: any }) => {
 
   return (
     <Container>
-      <div className="mt-[6rem] text-[#EE7A79] font-bold text-lg flex space-x-1">
+      <div className="mt-[6rem]    font-medium text-primary/80  text-lg flex space-x-1 ">
         <div>
           <Link href="/">
-            <Home />
+            <Home className="hover:underline cursor-pointer" />
           </Link>
         </div>
         <div>/</div>
         <Link href={"/class"}>
-          <h2>Class</h2>
+          <h2 className="hover:underline cursor-pointer">Class</h2>
         </Link>
         <div>/</div>
-
-        <h2 className="capitalize">{courseSlug}</h2>
+        <h2 className="capitalize hover:underline text-[#EE7A79] cursor-pointer">
+          {courseSlug}
+        </h2>
       </div>
-      <div className="mt-3 bg-white w-1/3 h-auto p-4 rounded-md shadow-lg">
+      <div className="mt-3  bg-white lg:w-1/3 h-auto p-4 rounded-md shadow-lg">
         <h2 className="text-lg font-medium text-[#EE7A79]">
           Subjects list for
           <span> {getSubjects?.name}</span>
         </h2>
-        <div className="mt-2">
+        <div className="mt-2 ">
           {allSubjects?.map((subject) => (
             <div key={subject.id}>
               <SubjectListCard

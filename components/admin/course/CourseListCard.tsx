@@ -78,9 +78,18 @@ const CourseListCard: React.FC<CourseListCardProps> = ({ classes }) => {
   };
   const handleDeleteClass = async (id: any, type: string) => {
     try {
-      const res = await axios.delete(`${url}/api/${type}/${id}`);
       setLoading(true);
-      toast.success(res.data.message);
+      const res = await fetch(
+        `${url}/api/${type}/${id}`,
+
+        {
+          method: "DELETE",
+          next: { revalidate: 1 },
+          cache: "no-store",
+        }
+      );
+      const data = await res.json();
+      toast.success(data.message);
       router.refresh();
       deleteClassModal.closeModal();
     } catch (error) {

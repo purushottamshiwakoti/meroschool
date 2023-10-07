@@ -16,6 +16,7 @@ export interface QuestionAnswerProps {
   }[];
   slug: string;
   searchParams: string;
+  presentClass: string;
 }
 
 const QuestionAnswer: React.FC<QuestionAnswerProps> = ({
@@ -23,6 +24,7 @@ const QuestionAnswer: React.FC<QuestionAnswerProps> = ({
   chapters,
   slug,
   searchParams,
+  presentClass,
 }) => {
   return (
     <Container>
@@ -33,6 +35,7 @@ const QuestionAnswer: React.FC<QuestionAnswerProps> = ({
             questions={questions}
             slug={slug}
             searchParams={searchParams}
+            presentClass={presentClass}
           />
         </div>
         {/* <QuestionAnswerList questions={questions} /> */}

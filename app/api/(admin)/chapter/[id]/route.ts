@@ -30,3 +30,24 @@ export async function PATCH(req: NextRequest,{params}:{params:any}) {
     
    }
   }
+
+  export async function DELETE(req: NextRequest,{params}:{params:any}) {
+    const id=params.id;
+    // const { userId } = getAuth(req);
+    // if(!userId) return NextResponse.json({message:"Unauthenticated"},{status:403});
+   try {
+    const deleteChapter = await prismadb.chapter.delete({
+    where:{
+        id
+    },
+    
+    });
+    return NextResponse.json({message: "Successfully deleted chapter",deleteChapter},{status:200});
+  
+    
+   } catch (error) {
+    console.log(error);
+    return NextResponse.json({error: error},{status:500});
+    
+   }
+  }

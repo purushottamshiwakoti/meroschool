@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
+import QuillBetterTable from "quill-better-table";
 
 import { Chapter, Class, Course, Subject } from "@prisma/client";
 
@@ -128,6 +129,7 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
       const res = await axios.post(`${url}/api/question`, values);
       // console.log(res);
       toast.success(res.data.message);
+
       router.refresh();
       router.back();
     } catch (error) {

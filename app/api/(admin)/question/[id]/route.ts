@@ -81,3 +81,31 @@ export async function PATCH(req: any, { params }: { params: any }) {
     
   }
 }
+
+export async function DELETE(req: any, { params }: { params: any }) {
+  // console.log("dsmnmndsnmds");
+  
+  try {
+    const id = await params.id;
+
+    // console.log(courseId, classId, chapterId, question, answer);
+
+    // Create a new question in the database using Prisma
+    const deleteQuestion = await prismadb.question.delete({
+      where:{
+        id
+      },
+     
+    });
+
+
+
+    return NextResponse.json({ message: "Successfully deleted question",deleteQuestion }, { status: 200 });
+    
+  } catch (error) {
+    return NextResponse.json({ error: error }, { status: 500 });
+
+    // console.log(error);
+    
+  }
+}

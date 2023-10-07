@@ -11,6 +11,7 @@ const page = async ({
   searchParams: any;
 }) => {
   const courseName = params.chapter;
+  const presentClass = params.class;
   const searchKey = searchParams.q;
 
   const questionsList = await prismadb.question.findMany({
@@ -53,6 +54,7 @@ const page = async ({
           chapters={chapters}
           slug={courseName}
           searchParams={searchParams}
+          presentClass={presentClass}
         />
       </div>
     </>

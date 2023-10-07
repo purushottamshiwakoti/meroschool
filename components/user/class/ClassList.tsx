@@ -33,7 +33,7 @@ const CLassList: React.FC<CLassListProps> = ({ classes }) => {
                   </AccordionTrigger>
                   <AccordionContent>
                     <div className="">
-                      <div className="space-y-5 tex-lg text-primary/60 font-semibold">
+                      <div className="space-y-5 k">
                         {((item as any).Course || []).length > 0 ? (
                           ((item as any).Course || []).map((course: Course) => (
                             <Link href={`class/${course.slug}`} key={course.id}>

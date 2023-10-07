@@ -63,7 +63,7 @@ const EditChapterForm: React.FC<EditChapterFormProps> = ({
   const router = useRouter();
   const params = useParams();
 
-  const url =typeof window !== "undefined" ? window.location.origin : "";
+  const url = typeof window !== "undefined" ? window.location.origin : "";
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -77,8 +77,8 @@ const EditChapterForm: React.FC<EditChapterFormProps> = ({
       const res = await axios.patch(`${url}/api/chapter/${params.id}`, values);
       toast.success(res.data.message);
       form.reset();
-      router.push("/v1/admin/chapters");
       router.refresh();
+      router.push("/v1/admin/chapters");
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");

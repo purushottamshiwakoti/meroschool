@@ -7,39 +7,33 @@ import { PlusCircle } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
-const Question = async () => {
-  const questions = await prismadb.question.findMany({
-    include: {
-      subjects: {
-        select: {
-          name: true,
-        },
-      },
-      classes: {
-        select: {
-          name: true,
-        },
-      },
-      courses: {
-        select: {
-          name: true,
-        },
-      },
-      chapters: {
-        select: {
-          name: true,
-        },
-      },
-    },
-  });
+async function getQuestions() {
+  try {
+    const res = await fetch(`${process.env.NEXT_URL}/api/question`, {
+      cache: "no-store",
+    });
+    if (!res.ok) {
+      throw new Error("Failed to fetch questions");
+    }
+    const data = await res.json();
+    return data.questions || [];
+  } catch (error) {
+    console.error("Error fetching questions:", error);
+    return [];
+  }
+}
 
-  const data = questions.map((item) => ({
-    id: item.id,
-    subject: item.subjects.name,
-    class: item.classes.name,
-    course: item.courses.name,
-    question: item.question,
-    chapter: item.chapters.name,
+const Question = async () => {
+  const allQetuestions = await getQuestions();
+  console.log(allQetuestions);
+  const questions = allQetuestions;
+  const data = questions?.map((item: any) => ({
+    id: item.id || "",
+    subject: item.subjects.name || "",
+    class: item.classes.name || "",
+    course: item.courses.name || "",
+    question: item.question || "",
+    chapter: item.chapters.name || "",
   }));
   return (
     <AdminContainer>

@@ -24,13 +24,6 @@ const Navbar = () => {
             >
               <Link href={"/"}>
                 <div className="flex space-x-1 items-center justify-center">
-                  <Image
-                    src={"/favicon/favicon.png"}
-                    width={32}
-                    height={32}
-                    alt="favicon"
-                    className="bg-[#FFF5E0]"
-                  />
                   <h2 className="text-lg font-bold text-[#EE7A79]">
                     BBS Tutorial
                   </h2>

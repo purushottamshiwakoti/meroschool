@@ -3,7 +3,21 @@ import prismadb from "@/lib/prismadb";
 
 export async function GET(req: any) {
 
-  return NextResponse.json({ message: "sdndsndnsb" }, { status: 200 });
+  // return NextResponse.json({ message: "sdndsndnsb" }, { status: 200 });
+  const classes= await prismadb.class.findMany({
+    orderBy: {
+      created_at: "desc",
+    },
+    include: {
+      Course: {
+        include: {
+          Subject: true,
+        },
+      },
+    },
+  });
+  
+  return NextResponse.json({ message: "Successfully fetched questions",classes }, { status: 200 });
 }
 export async function POST(req: any) {
   // const { userId } = getAuth(req);

@@ -3,33 +3,36 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 export async function GET(){
-// try {
-//   const chapter = await prismadb.chapter.findMany({
-//     include: {
-//       courses: true,
-//       subjects: true,
-//       class: true,
-//     },
-//   });
-//   return NextResponse.json({message: "Successfully fetched chapter",chapter},{status:200});
+try {
+  const chapter = await prismadb.chapter.findMany({
+    include: {
+      courses: true,
+      subjects: true,
+      class: true,
+    },
+    orderBy:{
+      created_at:"desc"
+    }
+  });
+  return NextResponse.json({message: "Successfully fetched chapter",chapter},{status:200});
   
   
-// } catch (error) {
-//   return NextResponse.json({error: error},{status:500});
+} catch (error) {
+  return NextResponse.json({error: error},{status:500});
   
-// }
-// const classId="651ec0ce618b3b22aa933161"
-// const courseId="651ec157618b3b22aa933164"
-// const subjectId="651ec219618b3b22aa933172"
+}
+// const classId="651f98e5cea375f9cff56893"
+// const courseId="651f98f0cea375f9cff56894"
+// const subjectId="651f98fbcea375f9cff56895"
 // const addChapter = await prismadb.chapter.createMany({
 //   data:[
-//     {
-//             name:"Mission, Vision, and Environment",
-//           slug:"Mission, Vision, and Environment".replace(/\s/g, '-').toLowerCase(),
+//     { name:"Conceptual Framework Accounting", 
+//           slug:"Conceptual Framework Accounting".replace(/\s/g, '-').toLowerCase(),
 //          classId:classId,
 //          courseId:courseId,
 //          subjectId:subjectId,
 //            },
+  
   
  
    

@@ -15,8 +15,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { redirect, useRouter } from "next/navigation";
 import Link from "next/link";
+import { toast } from "sonner";
+import axios from "axios";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.

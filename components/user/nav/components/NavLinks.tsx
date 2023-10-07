@@ -45,7 +45,7 @@ const NavLinks = () => {
             </Link>
           ))}
           <div className="flex float-right md:hidden lg:hidden">
-            <ColorSwitcher />
+            {/* <ColorSwitcher /> */}
           </div>
         </div>
       </div>

@@ -9,31 +9,31 @@ import { ChapterColumns } from "./create/components/ChapterColumns";
 import DeleteChapter from "./components/DeleteChapter";
 // const url = typeof window !== "undefined" ? window.location.origin : "";
 // // const url = window.location.origin;
-// const api = `${url}/api/chapter`;
-// console.log({ api });
-// console.log({ url });
-
-// async function getChapters() {
-//   const res = await fetch(`${process.env.NEXT_URL}/api/chapter`);
-//   return res.json();
-// }
-export const revalidate = 1000;
-
-export default async function Page() {
-  const chapter = await prismadb.chapter.findMany({
-    include: {
-      courses: true,
-      subjects: true,
-      class: true,
-    },
+async function getChapters() {
+  const res = await fetch(`${process.env.NEXT_URL}/api/chapter`, {
+    cache: "no-store",
   });
 
-  // if (!process.env.NEXT_URL) {
-  //   return null;
-  // }
-  // const chapter = await getChapters();
+  return res.json();
+}
 
-  const data = chapter.map((item: any) => ({
+export default async function Page() {
+  // const chapter = await prismadb.chapter.findMany({
+  //   include: {
+  //     courses: true,
+  //     subjects: true,
+  //     class: true,
+  //   },
+  //   orderBy: {
+  //     created_at: "desc",
+  //   },
+  // });
+
+  if (!process.env.NEXT_URL) {
+    return null;
+  }
+  const chapter = await getChapters();
+  const data = chapter.chapter.map((item: any) => ({
     id: item.id,
     class: item.class.name,
     subject: item.subjects.name,
