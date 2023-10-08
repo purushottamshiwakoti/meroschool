@@ -46,7 +46,6 @@ const page = async ({
   //   },
   // });
   const questionsList = allQuestions.questions;
-  console.log(questionsList);
   const chapterList = await prismadb.chapter.findMany({
     where: {
       subjects: {

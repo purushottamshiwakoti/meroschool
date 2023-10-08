@@ -24,11 +24,11 @@ const NavLinks = () => {
           className=" flex justify-end mt-3"
           onClick={menuState.handleChange}
         >
-          {/* {menuState.isOpen ? (
+          {menuState.isOpen ? (
             <X className="text-primary/50 lg:hidden md:hidden w-5 h-5 " />
           ) : (
             <Menu className="text-primary/50 lg:hidden md:hidden w-5 h-5" />
-          )} */}
+          )}
         </div>
         <div
           className={`lg:flex md:flex space-x-[2.94rem] ${

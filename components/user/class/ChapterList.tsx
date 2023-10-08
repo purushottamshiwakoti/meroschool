@@ -16,6 +16,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import SearchQuestion from "@/components/search/SearchQuestion";
 
 interface ChapterListProps {
   chapters: {
@@ -57,32 +58,7 @@ const ChapterList: React.FC<ChapterListProps> = ({
       {/* <div className="flex space-x-8"> */}
       <div>
         <div>
-          <form className="flex -mt-[1rem]">
-            <div className="flex relative items-center w-[90%] lg:w-[94%] ">
-              <Input
-                className=" border-none text-gray-600 pl-10   "
-                placeholder="Search..."
-                value={searchValue}
-                onChange={(e: any) => setSearchValue(e.target.value)}
-              />
-              <Search className="w-5 h-5 mr-2 ml-1 text-[#EE7A79] absolute left-2" />
-            </div>
-
-            <div>
-              <Link
-                href={{
-                  query: {
-                    ...(typeof searchParams === "object" ? searchParams : {}),
-                    q: searchValue,
-                  },
-                }}
-              >
-                <Button type="submit" className="ml-2" disabled={!searchValue}>
-                  Search
-                </Button>
-              </Link>
-            </div>
-          </form>
+          <SearchQuestion searchParams={searchParams} />
         </div>
         <div className="mt-2">
           <Link href={`/view-classes/${presentClass}`} className="bg-red-500">
