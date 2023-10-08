@@ -36,7 +36,7 @@ const CLassList: React.FC<CLassListProps> = ({ classes }) => {
                       <div className="space-y-5 k">
                         {((item as any).Course || []).length > 0 ? (
                           ((item as any).Course || []).map((course: Course) => (
-                            <Link href={`class/${course.slug}`} key={course.id}>
+                            <Link href={`view-classes/${course.slug}`} key={course.id}>
                               <div className="p-3 hover:bg-primary/5">
                                 {course.name}
                               </div>

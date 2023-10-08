@@ -7,28 +7,31 @@ const baseUrl=process.env.NEXT_URL;
 
 export default async function sitemap(){
     const getCourse=await prismadb.course.findMany({
-        include:{
-Subject:true,
-        }
+
     });
     const courseUrls=getCourse.map((item)=>(
       {
-        url:`${baseUrl}/class/${item.slug}`,
+        url:`${baseUrl}/view-classes/${item.slug}`,
         lastModified:item.updated_at,
       }
     ));
-
-    const subjectUrl=getCourse.map((subject)=>(
-            subject.Subject.map((item)=>(
-                {
-                    url:`${baseUrl}/class/${subject.slug}/${item.slug}`,
-                    lastModified:item.updated_at,
+      const  getSubject=await prismadb.subject.findMany({
+        select:{
+            slug:true,
+            updated_at:true,
+            courses:{
+                select:{
+                    slug:true,
                 }
-            ))
-    ))
-
-    
-
+            }
+        }
+      });
+      const subjectUrls=getSubject.map((item)=>(
+        {
+          url:`${baseUrl}/view-classes/${item.courses.slug}/${item.slug}`,
+          lastModified:item.updated_at,
+        }
+      ));
 
     
     return [
@@ -41,10 +44,10 @@ Subject:true,
             lastModified:new Date(),
         },
         {
-            url:`${baseUrl}/class`,
+            url:`${baseUrl}/view-classes`,
             lastModified:new Date(),
         },
         ...courseUrls,
-        ...subjectUrl
+        ...subjectUrls
     ]
 }

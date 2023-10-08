@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Discover BBS Class Page: Your Resource Hub for Bachelors in Business Studies. Navigate structured classes, access study materials, and optimize exam prep",
   alternates: {
-    canonical: "/class",
+    canonical: "/view-classes",
     languages: {
       "en-US": "/en-US",
     },

@@ -10,7 +10,7 @@ import { ColorSwitcher } from "@/components/common/ColorSwitcher";
 
 const links = [
   { id: 1, name: "Home", href: "/" },
-  { id: 2, name: "Class", href: "/class" },
+  { id: 2, name: "View Classes", href: "/view-classes" },
   { id: 3, name: "Suggestion", href: "/suggestion" },
 ];
 
