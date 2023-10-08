@@ -1,5 +1,3 @@
-import { Chapter } from './(admin)/v1/admin/chapters/create/components/ChapterColumns';
-import { Course } from '@prisma/client';
 import prismadb from "@/lib/prismadb";
 
 const baseUrl=process.env.NEXT_URL;

@@ -1,8 +1,8 @@
-import CLassList from "@/components/user/class/ClassList";
 import prismadb from "@/lib/prismadb";
 import React from "react";
 
 import { Metadata } from "next";
+import CLassList from "@/components/user/class/ClassList";
 
 export const metadata: Metadata = {
   title: "Class",

@@ -37,8 +37,8 @@ const page = async ({ params }: { params: any }) => {
           </Link>
         </div>
         <div>/</div>
-        <Link href={"/class"}>
-          <h2 className="hover:underline cursor-pointer">Class</h2>
+        <Link href={"/view-classes"}>
+          <h2 className="hover:underline cursor-pointer">View Classes</h2>
         </Link>
         <div>/</div>
         <h2 className="capitalize hover:underline text-[#EE7A79] cursor-pointer">

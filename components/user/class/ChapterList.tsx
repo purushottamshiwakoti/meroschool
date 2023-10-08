@@ -85,7 +85,7 @@ const ChapterList: React.FC<ChapterListProps> = ({
           </form>
         </div>
         <div className="mt-2">
-          <Link href={`/class/${presentClass}`} className="bg-red-500">
+          <Link href={`/view-classes/${presentClass}`} className="bg-red-500">
             <Button
               variant={"outline"}
               className="mr-5 flex text-[#EE7A79] items-center"

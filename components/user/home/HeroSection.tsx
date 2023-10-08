@@ -24,18 +24,21 @@ const HeroSection = () => {
               Embrace the Future of Learning: It&apos;s Now Easier Than Ever to
               Study Online
             </p>
-            <div className="flex space-x-3 mt-5 justify-center lg:justify-normal">
-              <Link href={"/class"}>
-                <Button className="lg:w-[11.875rem] md:w-[11.875rem] lg:h-[3.125rem] md:h-[3.125rem] bg-[#EE7A79] hover:bg-[#EE7A79]/80">
-                  Get Started
-                </Button>
-              </Link>
-              <Link href={"/class"}>
+            <div className="md:flex lg:flex space-y-4   md:space-x-3 lg:space-x-3 mt-5 justify-center lg:justify-normal">
+              <div>
+                <Link href={"/view-classes"}>
+                  <Button className="lg:w-[11.875rem] md:w-[11.875rem] lg:h-[3.125rem] md:h-[3.125rem] w-full bg-[#EE7A79] hover:bg-[#EE7A79]/80">
+                    Get Started
+                  </Button>
+                </Link>
+              </div>
+              <div></div>
+              <Link href={"/view-classes"}>
                 <Button
-                  className="lg:w-[11.875rem] md:w-[11.875rem] lg:h-[3.125rem] md:h-[3.125rem] bg-none "
+                  className="lg:w-[11.875rem] w-full md:w-[11.875rem] lg:h-[3.125rem] md:h-[3.125rem] bg-none "
                   variant={"outline"}
                 >
-                  Learn More
+                  Visit Class
                 </Button>
               </Link>
             </div>
