@@ -16,11 +16,21 @@ export const metadata: Metadata = {
   },
 };
 async function getClasses() {
-  const res = await fetch(`${process.env.NEXT_URL}/api/class`, {
-    // next: { revalidate: 10 },
-    cache: "no-store",
-  });
-  return res.json();
+  try {
+    const res = await fetch(`${process.env.NEXT_URL}/api/class`, {
+      // next: { revalidate: 10 },
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch questions");
+    }
+    const data = await res.json();
+    return data || [];
+  } catch (error) {
+    console.error("Error fetching questions:", error);
+    return [];
+  }
 }
 
 const Class = async () => {
@@ -34,7 +44,7 @@ const Class = async () => {
   return (
     <>
       <div className="mt-[7rem]">
-        <CLassList classes={allCLasses} />
+        {allCLasses && <CLassList classes={allCLasses} />}
       </div>
     </>
   );

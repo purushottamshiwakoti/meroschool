@@ -100,21 +100,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>
-          <ThemeProvider
-            attribute="class"
-            // defaultTheme="system"
-            forcedTheme="light"
-            enableSystem  
-            disableTransitionOnChange
-          >
-            <NextTopLoader color="#EE7A79" />
-            <Navbar />
-            {children}
-            <Footer />
-            <ToastProvider />
-          </ThemeProvider>
-        </AuthProvider>
+        {/* <AuthProvider> */}
+        <ThemeProvider
+          attribute="class"
+          // defaultTheme="system"
+          forcedTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <NextTopLoader color="#EE7A79" />
+          <Navbar />
+          {children}
+          <Footer />
+          <ToastProvider />
+        </ThemeProvider>
+        {/* </AuthProvider> */}
       </body>
     </html>
   );

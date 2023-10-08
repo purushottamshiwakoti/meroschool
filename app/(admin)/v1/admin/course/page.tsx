@@ -1,8 +1,20 @@
 import CourseListCard from "@/components/admin/course/CourseListCard";
 
 async function getClasses() {
-  const res = await fetch(`${process.env.NEXT_URL}/api/class`,{cache:"no-store"});
-  return res.json();
+  try {
+    const res = await fetch(`${process.env.NEXT_URL}/api/class`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch questions");
+    }
+    const data = await res.json();
+    return data || [];
+  } catch (error) {
+    console.error("Error fetching questions:", error);
+    return [];
+  }
 }
 const Course = async () => {
   const getClass = await getClasses();
@@ -19,4 +31,3 @@ const Course = async () => {
 };
 
 export default Course;
-

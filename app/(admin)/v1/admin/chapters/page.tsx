@@ -10,11 +10,19 @@ import DeleteChapter from "./components/DeleteChapter";
 // const url = typeof window !== "undefined" ? window.location.origin : "";
 // // const url = window.location.origin;
 async function getChapters() {
-  const res = await fetch(`${process.env.NEXT_URL}/api/chapter`, {
-    cache: "no-store",
-  });
-
-  return res.json();
+  try {
+    const res = await fetch(`${process.env.NEXT_URL}/api/chapter`, {
+      cache: "no-store",
+    });
+    if (!res.ok) {
+      throw new Error("Failed to fetch chapters");
+    }
+    const data = await res.json();
+    return data || [];
+  } catch (error) {
+    console.error("Error fetching questions:", error);
+    return [];
+  }
 }
 
 export default async function Page() {
@@ -29,17 +37,15 @@ export default async function Page() {
   //   },
   // });
 
-  if (!process.env.NEXT_URL) {
-    return null;
-  }
   const chapter = await getChapters();
-  const data = chapter.chapter.map((item: any) => ({
-    id: item.id,
-    class: item.class.name,
-    subject: item.subjects.name,
-    course: item.courses.name,
-    chapter: item.name,
+  const data = chapter.chapter?.map((item: any) => ({
+    id: item.id || "",
+    class: item.class.name || "",
+    subject: item.subjects.name || "",
+    course: item.courses.name || "",
+    chapter: item.name || "",
   }));
+  console.log(data);
 
   return (
     <>
@@ -59,11 +65,13 @@ export default async function Page() {
             </Link>
           </div>
           <div className="max-w-screen overflow-x-auto">
-            <DataTable
-              columns={ChapterColumns}
-              data={data}
-              filterKey="chapter"
-            />
+            {data && (
+              <DataTable
+                columns={ChapterColumns}
+                data={data}
+                filterKey="chapter"
+              />
+            )}
           </div>
         </div>
       </AdminContainer>

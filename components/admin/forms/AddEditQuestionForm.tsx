@@ -128,10 +128,13 @@ const AddEditQuestionForm: React.FC<AddEditQuestionFormProps> = ({
       setLoading(true);
       const res = await axios.post(`${url}/api/question`, values);
       // console.log(res);
-      toast.success(res.data.message);
 
-      router.refresh();
-      router.back();
+      toast.success(res.data.message);
+      form.resetField("answer");
+      form.resetField("question");
+
+      // router.refresh();
+      // router.back();
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
