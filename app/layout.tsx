@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/common/Footer";
 import ToastProvider from "@/providers/ToastProvider";
 import NextTopLoader from "nextjs-toploader";
+import AuthProvider from "@/providers/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -99,19 +100,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          // defaultTheme="system"
-          forcedTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <NextTopLoader color="#EE7A79" />
-          <Navbar />
-          {children}
-          <Footer />
-          <ToastProvider />
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider
+            attribute="class"
+            // defaultTheme="system"
+            forcedTheme="light"
+            enableSystem  
+            disableTransitionOnChange
+          >
+            <NextTopLoader color="#EE7A79" />
+            <Navbar />
+            {children}
+            <Footer />
+            <ToastProvider />
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );

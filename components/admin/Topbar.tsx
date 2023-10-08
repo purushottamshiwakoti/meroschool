@@ -6,10 +6,12 @@ import React from "react";
 import useAdminMenuStore from "@/hooks/useAdminMenuStore";
 import Avatar from "../common/Avatar";
 import { Input } from "../ui/input";
+import { useSession } from "next-auth/react";
 
 const Topbar = () => {
   const menuStore = useAdminMenuStore();
-
+  const { data: session } = useSession();
+  console.log(session);
   return (
     <div className="h-[4rem] bg-white p-4 border-b-2 flex justify-between items-center fixed w-full z-10  ">
       <div className="cursor-pointer flex items-center space-x-[5rem]">
