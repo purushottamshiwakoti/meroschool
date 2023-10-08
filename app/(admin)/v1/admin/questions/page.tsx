@@ -25,7 +25,7 @@ async function getQuestions() {
 
 const Question = async () => {
   const allQetuestions = await getQuestions();
-  console.log(allQetuestions);
+  // console.log(allQetuestions);
   const questions = allQetuestions;
   const data = questions?.map((item: any) => ({
     id: item.id || "",

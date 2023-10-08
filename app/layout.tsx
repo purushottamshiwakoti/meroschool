@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   description:
     "Explore BBS exam Q&A: 1st-4th year study resources to ace your Bachelors in Business Studies exams. Streamline your preparation and excel with ease.",
   applicationName: "BBS Tutorial Application",
+  verification: {
+    google: "CWbcX1UdDi-jHid4BVjxZxJdopH5HGYE6ttwsES45DU",
+  },
   keywords: [
     "BBS Tutorial Application",
     "bbs 1st year",

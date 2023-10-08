@@ -1,7 +1,16 @@
 import QuestionAnswer from "@/components/user/class/QuestionAnswer";
 import prismadb from "@/lib/prismadb";
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import React from "react";
+
+const getQuestions = async ({ searchKey, courseName, chapterName }) => {
+  const res = await fetch(`${process.env.NEXT_URL}/api/search/question`, {
+    method: "POST",
+    body: JSON.stringify({ searchKey, courseName, chapterName }),
+  });
+  return await res.json();
+};
 
 const page = async ({
   params,
@@ -14,20 +23,30 @@ const page = async ({
   const presentClass = params.class;
   const searchKey = searchParams.q;
 
-  const questionsList = await prismadb.question.findMany({
-    where: {
-      question: {
-        contains: searchKey,
-        mode: "insensitive",
-      },
-      subjects: {
-        slug: courseName,
-      },
-      chapters: {
-        slug: searchParams.chapter,
-      },
-    },
+  const chapterName = searchParams.chapter;
+
+  const allQuestions = await getQuestions({
+    chapterName,
+    courseName,
+    searchKey,
   });
+
+  // const questionsList = await prismadb.question.findMany({
+  //   where: {
+  //     question: {
+  //       contains: searchKey,
+  //       mode: "insensitive",
+  //     },
+  //     subjects: {
+  //       slug: courseName,
+  //     },
+  //     chapters: {
+  //       slug: searchParams.chapter,
+  //     },
+  //   },
+  // });
+  const questionsList = allQuestions.questions;
+  console.log(questionsList);
   const chapterList = await prismadb.chapter.findMany({
     where: {
       subjects: {

@@ -8,7 +8,7 @@ import prismadb from "@/lib/prismadb";
 
 const page = async ({ params }: { params: any }) => {
   const id = params.id;
-  console.log(id);
+  // console.log(id);
   const chapter = await prismadb.chapter.findUnique({
     where: {
       id,

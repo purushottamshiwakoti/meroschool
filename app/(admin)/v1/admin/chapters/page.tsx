@@ -45,7 +45,7 @@ export default async function Page() {
     course: item.courses.name || "",
     chapter: item.name || "",
   }));
-  console.log(data);
+  // console.log(data);
 
   return (
     <>
