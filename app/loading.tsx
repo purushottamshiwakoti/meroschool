@@ -1,7 +1,8 @@
-import React from "react";
-
-const loading = () => {
-  return <div>loading...</div>;
-};
-
-export default loading;
+export default function Loading() {
+  // Or a custom loading skeleton component
+  return (
+    <p className="w-[100vw] h-[100vh] flex items-center justify-center">
+      Loading...
+    </p>
+  );
+}

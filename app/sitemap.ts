@@ -21,7 +21,8 @@ export default async function sitemap(){
                 select:{
                     slug:true,
                 }
-            }
+            },
+           
         }
       });
       const subjectUrls=getSubject.map((item)=>(
@@ -30,6 +31,35 @@ export default async function sitemap(){
           lastModified:item.updated_at,
         }
       ));
+
+      const  getChapter=await prismadb.chapter.findMany({
+        select:{
+            slug:true,
+            updated_at:true,
+            courses:{
+              select:{
+                  slug:true,
+              }
+          },
+          subjects:{
+            select:{
+              slug:true,
+            }
+          },
+            },
+        
+      });
+      const chapterUrls=getChapter.map((item)=>(
+        {
+          url:`${baseUrl}/view-classes/${item.courses.slug}/${item.subjects.slug}/${item.slug}`,
+          lastModified:item.updated_at,
+        }
+      ));
+
+
+    
+
+     
 
     
     return [
@@ -46,6 +76,7 @@ export default async function sitemap(){
             lastModified:new Date(),
         },
         ...courseUrls,
-        ...subjectUrls
+        ...subjectUrls,
+        ...chapterUrls,
     ]
 }

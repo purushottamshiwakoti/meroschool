@@ -8,6 +8,7 @@ import Footer from "@/components/common/Footer";
 import ToastProvider from "@/providers/ToastProvider";
 import NextTopLoader from "nextjs-toploader";
 import AuthProvider from "@/providers/AuthProvider";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -118,6 +119,11 @@ export default function RootLayout({
           <ToastProvider />
         </ThemeProvider>
         {/* </AuthProvider> */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2577496886069861"
+          crossOrigin="anonymous"
+        />
       </body>
     </html>
   );

@@ -4,10 +4,15 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import React from "react";
 
-const getQuestions = async ({ searchKey, courseName, chapterName }) => {
+const getQuestions = async ({
+  courseName,
+  chapterName,
+  presentClass,
+  searchKey,
+}) => {
   const res = await fetch(`${process.env.NEXT_URL}/api/search/question`, {
     method: "POST",
-    body: JSON.stringify({ searchKey, courseName, chapterName }),
+    body: JSON.stringify({ chapterName, presentClass, courseName, searchKey }),
   });
   return await res.json();
 };
@@ -23,10 +28,12 @@ const page = async ({
   const presentClass = params.class;
   const searchKey = searchParams.q;
 
-  const chapterName = searchParams.chapter;
+  const chapterName = params.slug;
+//   console.log(chapterName);
 
   const allQuestions = await getQuestions({
     chapterName,
+    presentClass,
     courseName,
     searchKey,
   });
@@ -64,16 +71,17 @@ const page = async ({
     question: item.question,
     answer: item.answer,
   }));
+
   return (
     <>
       <div>
         <QuestionAnswer
-          chapterName="all"
           questions={questions}
           chapters={chapters}
           slug={courseName}
           searchParams={searchParams}
           presentClass={presentClass}
+          chapterName={chapterName}
         />
       </div>
     </>

@@ -5,7 +5,7 @@ import { Home, Slash } from "lucide-react";
 import Link from "next/link";
 
 const page = async ({ params }: { params: any }) => {
-  console.log(params);
+  // console.log(params);
   const courseSlug = params.class;
   const getSubjects = await prismadb.course.findFirst({
     where: {

@@ -1,22 +1,19 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Skeleton } from "@/components/ui/skeleton";
-import prismadb from "@/lib/prismadb";
-import axios from "axios";
-import parse from "html-react-parser";
-import { ArrowLeft, Search } from "lucide-react";
-import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import SearchQuestion from "@/components/search/SearchQuestion";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import SearchQuestion from "@/components/search/SearchQuestion";
+import { Button } from "@/components/ui/button";
+import parse from "html-react-parser";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
+import React, { useState } from "react";
+
+import InfiniteScroll from "react-infinite-scroll-component";
 
 interface ChapterListProps {
   chapters: {
@@ -32,6 +29,7 @@ interface ChapterListProps {
   slug: string;
   searchParams: string;
   presentClass: string;
+  chapterName: string;
 }
 const ChapterList: React.FC<ChapterListProps> = ({
   chapters,
@@ -39,20 +37,8 @@ const ChapterList: React.FC<ChapterListProps> = ({
   slug,
   searchParams,
   presentClass,
+  chapterName,
 }) => {
-  const [searchValue, setSearchValue] = useState();
-  // const [allQuestions, setAllQuestions] = useState(questions);
-  const params = useSearchParams();
-  const chapterName = params.get("chapter");
-
-  // const handleSearch = (e) => {
-  //   e.preventDefault();
-  //   if (searchValue) {
-  //     alert(searchValue);
-  //     router.replace(path, { params: searchValue });
-  //   }
-  // };
-
   return (
     <>
       {/* <div className="flex space-x-8"> */}
@@ -72,15 +58,18 @@ const ChapterList: React.FC<ChapterListProps> = ({
           </Link>
         </div>
         <div className="flex flex-nowrap space-x-3 lg:space-x-10 w-full overflow-x-scroll  mt-3">
+          <Link href={`/view-classes/${presentClass}/${slug}`}>
+            <Button
+              variant={chapterName === "all" ? "default" : "secondary"}
+              className="p-10 truncate"
+            >
+              All Chapters
+            </Button>
+          </Link>
           {chapters.map((chapter) => (
             <div key={chapter.id}>
               <Link
-                href={{
-                  query: {
-                    ...(typeof searchParams === "object" ? searchParams : {}),
-                    chapter: chapter.slug,
-                  },
-                }}
+                href={`/view-classes/${presentClass}/${slug}/${chapter.slug}`}
               >
                 <Button
                   variant={
@@ -107,16 +96,10 @@ const ChapterList: React.FC<ChapterListProps> = ({
         )}
         {questions.map((item) => (
           <div className="mt-4 bg-white p-4 rounded-md shadow-md" key={item.id}>
-            {/* <h2 className="text-lg text-[#EE7A79] font-semibold flex">
-                  {parse(item.question)}
-                </h2>
-                <div className="text-base text-gray-700 font-normal mt-2 flex">
-                  {parse(item.answer)}
-                </div> */}
             <Accordion type="single" collapsible>
               <AccordionItem value={item.question}>
                 <AccordionTrigger className="text-[#EE7A79]">
-                  <h2 className="text-lg  font-semibold flex">
+                  <h2 className="text-lg  font-semibold flex text-left">
                     {parse(item.question)}
                   </h2>
                 </AccordionTrigger>

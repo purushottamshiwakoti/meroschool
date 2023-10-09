@@ -17,6 +17,7 @@ export interface QuestionAnswerProps {
   slug: string;
   searchParams: string;
   presentClass: string;
+  chapterName: string;
 }
 
 const QuestionAnswer: React.FC<QuestionAnswerProps> = ({
@@ -25,7 +26,9 @@ const QuestionAnswer: React.FC<QuestionAnswerProps> = ({
   slug,
   searchParams,
   presentClass,
+  chapterName,
 }) => {
+  // console.log(chapterName);
   return (
     <Container>
       <div className="">
@@ -36,6 +39,7 @@ const QuestionAnswer: React.FC<QuestionAnswerProps> = ({
             slug={slug}
             searchParams={searchParams}
             presentClass={presentClass}
+            chapterName={chapterName}
           />
         </div>
         {/* <QuestionAnswerList questions={questions} /> */}
