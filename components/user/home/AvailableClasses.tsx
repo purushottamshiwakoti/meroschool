@@ -79,7 +79,7 @@ const AvailableClassesCard: React.FC<AvailableClassesCardProps> = ({
           </p>
         </div>
         <div className="mt-1 ">
-          <Link href={`/class${href}`}>
+          <Link href={`/view-classes${href}`}>
             <Button className="bg-[#EE7A79] hover:bg-[#EE7A79] h-[2.7rem] hover:opacity-80 w-full  ">
               Start Learning
             </Button>

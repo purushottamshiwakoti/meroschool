@@ -7,23 +7,31 @@ import useAdminMenuStore from "@/hooks/useAdminMenuStore";
 import Avatar from "../common/Avatar";
 import { Input } from "../ui/input";
 import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
 
 const Topbar = () => {
   const menuStore = useAdminMenuStore();
+  const path = usePathname();
+
   // const { data: session } = useSession();
   // console.log(session);
-  return (
+  return path.includes("login") ? (
+    ""
+  ) : (
     <div className="h-[4rem] bg-white p-4 border-b-2 flex justify-between items-center fixed w-full z-10  ">
       <div className="cursor-pointer flex items-center space-x-[5rem]">
         <Menu className="text-gray-600" onClick={menuStore.closeMenu} />
         <div className="lg:flex md:flex items-center space-x-1 justify-center hidden">
-          <Image
-            src={"/favicon/favicon.png"}
-            width={32}
-            height={32}
-            alt="favicon"
-            className="bg-none"
-          />
+          <figure>
+            <Image
+              src={"/favicon/favicon.png"}
+              width={32}
+              height={32}
+              alt="favicon"
+              className="bg-none"
+            />
+            <figcaption>This is favicon</figcaption>
+          </figure>
           <h2 className="text-lg font-bold text-primary/80">
             BBS Tutorial Admin
           </h2>

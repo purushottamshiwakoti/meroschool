@@ -16,7 +16,7 @@ export default function Loading() {
       <div className="mt-[7rem]">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-white ">
-            <div className="bg-white w-[20rem] p-2 shadow-md rounded-md mb-5   ">
+            <div className="bg-gray-500 w-[20rem] p-2 shadow-md rounded-md mb-5   ">
               <Accordion type="single" collapsible defaultValue="item-1">
                 <AccordionItem value="item-1">
                   {/* <AccordionTrigger> */}

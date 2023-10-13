@@ -1,38 +1,27 @@
-// import prismadb from "@/lib/prismadb";
-// import { NextRequest,NextResponse } from "next/server";
-// import * as  bcrypt from "bcrypt"
-
-import { NextResponse } from "next/server";
-
-// import { signJwtAccessToken } from "@/lib/jwt";
+import prismadb from "@/lib/prismadb";
+import { NextRequest, NextResponse } from "next/server";
+import bcrypt from "bcrypt";
+import signJwt from "@/lib/signJwt";
 
 
-// export async function POST(req:NextRequest){
-//     const body=await req.json();
-//   const {email,password}=body;
-//     const user=await prismadb.user.findFirst({
-//         where:{
-//             email:body.email,
-//         },
-       
-//     });
-//     if(!user){
-//         return NextResponse.json({message:"Invalid Crediantials"},{status:401});
+export async function POST(req:NextRequest){
+    const {email,password}=await req.json();
+    console.log(email,password);
+    const user=await prismadb.user.findFirst({
+        where:{
+            email,
+        }
+    });
+    if(!user){
+    return NextResponse.json({message:"Invalid Credentials"},{status:409});
+    };
+    const comparePasword=await bcrypt.compare(password,user.password);
 
-//     }
+    if(!comparePasword){
+    return NextResponse.json({message:"Invalid Credentials "},{status:409});
+    }
+    const token=await signJwt({email});
+   
 
-//    const comparePassword=await bcrypt.compare(password,user.password);
-//    console.log(comparePassword);
-
-//    if(comparePassword){
-//     const accessToken=signJwtAccessToken(user)
-//     return NextResponse.json({message:"Successfully logged in ",user,accessToken},{status:200});
-
-//    }
-
-
-// }
-
-export async function GET(){
-    return NextResponse.json({success:true},{status:200});
+    return NextResponse.json({message:"successfully Signed In",token},{status:200});
 }

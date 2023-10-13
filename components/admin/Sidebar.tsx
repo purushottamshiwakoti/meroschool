@@ -2,10 +2,14 @@
 
 import useAdminMenuStore from "@/hooks/useAdminMenuStore";
 import AdminLinks from "./components/AdminLinks";
+import { usePathname } from "next/navigation";
 
 const Sidebar = () => {
   const menuStore = useAdminMenuStore();
-  return (
+  const path = usePathname();
+  return path.includes("login") ? (
+    ""
+  ) : (
     <div
       className={`${
         !menuStore.isOpen ? "w-[4rem]" : "lg:w-[12rem] w-[4rem] "

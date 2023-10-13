@@ -6,9 +6,9 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Suggestion",
   description:
-    "Share Your Insights: BBS Website Suggestion Page. Contribute to enhancing user experience and improving our BBS exam resource website. Join us!",
+    "How to improve BBS Tutorail? This suggestions will help us to make our website more user friendly and we will work on what user needs ",
   alternates: {
-    canonical: "/",
+    canonical: "/suggestion",
     languages: {
       "en-US": "/en-US",
     },

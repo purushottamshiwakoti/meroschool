@@ -5,9 +5,9 @@ import { Metadata } from "next";
 import CLassList from "@/components/user/class/ClassList";
 
 export const metadata: Metadata = {
-  title: "Class",
+  title: "View Class",
   description:
-    "Discover BBS Class Page: Your Resource Hub for Bachelors in Business Studies. Navigate structured classes, access study materials, and optimize exam prep",
+    "Discover BBS 1st Year, BBS 2nd Year, BBS 3rd Year and BBS 4th Year class lists here.View all questions and answers of all classes here!!",
   alternates: {
     canonical: "/view-classes",
     languages: {
