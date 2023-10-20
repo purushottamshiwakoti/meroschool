@@ -32,6 +32,7 @@
     "ckeditor5-classic-with-mathtype": "^1.0.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "cookies-next": "^4.0.0",
     "eslint-config-next": "13.5.2",
     "html-react-parser": "^4.2.2",
     "jose": "^4.15.3",

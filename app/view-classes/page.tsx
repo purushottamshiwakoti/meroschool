@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Discover BBS 1st Year, BBS 2nd Year, BBS 3rd Year and BBS 4th Year class lists here.View all questions and answers of all classes here!!",
   alternates: {
-    canonical: "/view-classes",
+    // canonical: "/view-classes",
     languages: {
       "en-US": "/en-US",
     },

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "How to improve BBS Tutorail? This suggestions will help us to make our website more user friendly and we will work on what user needs ",
   alternates: {
-    canonical: "/suggestion",
+    // canonical: "/suggestion",
     languages: {
       "en-US": "/en-US",
     },
