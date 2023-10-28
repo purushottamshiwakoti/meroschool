@@ -22,7 +22,7 @@ const Topbar = () => {
       <div className="cursor-pointer flex items-center space-x-[5rem]">
         <Menu className="text-gray-600" onClick={menuStore.closeMenu} />
         <div className="lg:flex md:flex items-center space-x-1 justify-center hidden">
-          <figure>
+          {/* <figure>
             <Image
               src={"/favicon/favicon.png"}
               width={32}
@@ -31,7 +31,7 @@ const Topbar = () => {
               className="bg-none"
             />
             <figcaption>This is favicon</figcaption>
-          </figure>
+          </figure> */}
           <h2 className="text-lg font-bold text-primary/80">
             BBS Tutorial Admin
           </h2>

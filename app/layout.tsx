@@ -1,14 +1,13 @@
 import Navbar from "@/components/user/nav/Navbar";
-import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import "./globals.css";
 
-import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/common/Footer";
+import { ThemeProvider } from "@/components/theme-provider";
 import ToastProvider from "@/providers/ToastProvider";
-import NextTopLoader from "nextjs-toploader";
-import AuthProvider from "@/providers/AuthProvider";
 import Script from "next/script";
+import NextTopLoader from "nextjs-toploader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,9 +31,9 @@ export const metadata: Metadata = {
   publisher: "Puru Shiw",
   alternates: {
     canonical: "/",
-    languages: {
-      "en-US": "/en-US",
-    },
+    // languages: {
+    //   "en-US": "/en-US",
+    // },
   },
   openGraph: {
     title: "BBS Exam Q&A: 1st-4th Year Study Resources",
@@ -42,7 +41,7 @@ export const metadata: Metadata = {
       "Explore BBS exam Q&A: 1st-4th year study resources to ace your Bachelors in Business Studies exams. Streamline your preparation and excel with ease.",
     url: "https://bbstutorial.com",
     siteName: "BBS Tutiorial",
-    locale: "en_US",
+    // locale: "en_US",
     type: "website",
   },
   twitter: {
